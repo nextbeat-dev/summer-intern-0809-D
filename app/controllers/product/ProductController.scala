@@ -8,7 +8,6 @@ import persistence.purchase_history.model.PurchaseHistory
 import mvc.action.AuthenticationAction
 import model.site.product.SiteViewValueProduct
 import model.component.util.ViewValuePageLayout
-import routes
 
 // 商品
 class ProductController @javax.inject.Inject()(
