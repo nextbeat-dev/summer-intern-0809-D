@@ -9,7 +9,6 @@ package persistence.idol_products.dao
 
 import java.time.LocalDateTime
 
-import persistence.geo.model
 import persistence.idol_products.model.IdolProducts
 import persistence.idol.model.Idol
 import persistence.product.model.Product
@@ -22,8 +21,8 @@ import scala.concurrent.Future
 // DAO: アイドル-商品間の操作
 //~~~~~~~~~~~~~~~~~~
 class IdleProductsDAO @javax.inject.Inject()(
-  val dbConfigProvider: DatabaseConfigProvider
-) extends HasDatabaseConfigProvider[JdbcProfile] {
+                                              val dbConfigProvider: DatabaseConfigProvider
+                                            ) extends HasDatabaseConfigProvider[JdbcProfile] {
   import profile.api._
 
   // --[ リソース定義 ] --------------------------------------------------------
@@ -31,14 +30,17 @@ class IdleProductsDAO @javax.inject.Inject()(
 
   // --[ データ処理定義 ] ------------------------------------------------------
   /**
-   * product_idとidol_idを引数に、アイドルのオススメを一件登録する
-   */
+    * idolのidを引数に
+    * それにひもづく全てのproductを返す
+    */
 
-//  def insert(IdolId: Idol.Id, ProductId: Product.Id) = {
-//    val insertData: idolProducts = idolProducts(
-//
-//    )
-//  }
+  def getProductsByIdolid(idolId: Idol.Id) =
+    db.run{
+      slick
+        .filter(_.id === idolId)
+        .result
+    }
+
 
 
   // --[ テーブル定義 ] --------------------------------------------------------
