@@ -24,6 +24,7 @@ class IdolController @javax.inject.Inject()(
         layout = ViewValuePageLayout(id = request.uri),
         idols   = idolSeq
       )
+      // printf(idolSeq(1).name)
       Ok(views.html.site.idol.list.Main(vv))
     }
   }

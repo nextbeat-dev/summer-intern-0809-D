@@ -1,0 +1,18 @@
+@import model.site.idol.SiteViewIdolList
+@(vv: SiteViewIdolList)
+
+<div class="content__section content">
+    @for(idol <- vv.idols) {
+      <article class="facility-list-item">
+        <a href="#">
+          <div class="item-panel__wrapper">
+            <header class="facility-item__header">
+              <div class="name">
+                @idol.name
+              </div>
+            </header>
+          </div>
+        </a>
+      </article>
+    }
+  </div>

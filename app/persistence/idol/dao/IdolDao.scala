@@ -53,7 +53,7 @@ class IdolDao @javax.inject.Inject()(
     }
 
   // --[ テーブル定義 ] --------------------------------------------------------
-  class IdolTable(tag: Tag) extends Table[Idol](tag, "idol_table") {
+  class IdolTable(tag: Tag) extends Table[Idol](tag, "idol") {
 
     // Table's columns
     /* @1 */ def id        = column[Idol.Id]       ("id", O.PrimaryKey, O.AutoInc)  // ユーザID

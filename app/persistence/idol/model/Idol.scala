@@ -7,10 +7,10 @@ import java.time.LocalDateTime
 // アイドル情報
 //~~~~~~~~~~~~~~
 case class Idol(
-  id:        Option[Idol.Id],                           // アイドルのID
-  // groupId:   Option[Group.Id],                     // アイドルのグループID
-  name:      String,                                  // アイドル名
-  profile:   String,                               // アイドル情報
+  id:        Option[Idol.Id],                    // アイドルのID
+  // groupId:   Option[Group.Id],                  // アイドルのグループID
+  name:      String,                             // アイドル名
+  profile:   String,                             // アイドル情報
   twitterId: String,                             // アイドル個人のTwitterのID
   updatedAt: LocalDateTime = LocalDateTime.now,  // データ更新日
   createdAt: LocalDateTime = LocalDateTime.now   // データ作成日
