@@ -8,7 +8,8 @@ import persistence.product.dao.ProductDAO
 import persistence.purchase_history.dao.PurchaseHistoryDao
 import persistence.purchase_history.model.PurchaseHistory
 import mvc.action.AuthenticationAction
-import model.site.product.SiteViewValueProduct
+import model.site.idol.SiteViewIdolDetail
+import model.site.product.SiteViewProductDetail
 import model.component.util.ViewValuePageLayout
 
 // 商品
@@ -55,7 +56,7 @@ class ProductController @javax.inject.Inject()(
         userRequest.userId,
         productId,
         1,
-        // idolId
+        idolId
       )
     )
     Redirect("/recruit/intership-for-summer-21")
