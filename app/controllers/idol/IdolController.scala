@@ -5,6 +5,7 @@ import play.api.mvc.{AbstractController, MessagesControllerComponents}
 import persistence.idol.dao.IdolDao
 import persistence.idol.model.Idol
 import model.site.idol.SiteViewIdolList
+
 import model.component.util.ViewValuePageLayout
 
 class IdolController @javax.inject.Inject()(
