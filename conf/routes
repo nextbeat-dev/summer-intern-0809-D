@@ -12,7 +12,7 @@ GET   /idol/:id                         controllers.idol.IdolController.detail(i
 
 # --[ 商品ページ ]----------------------------------------------------------------
 GET   /product/:i_id/:p_id              controllers.product.ProductController.detail(i_id: Long, p_id: Long)
-# POST  /product/:i_id/:p_id              controllers.product.ProductController.purchase(i_id: Long, p_id: Long)
+POST  /product/:i_id/:p_id              controllers.product.ProductController.purchase(i_id: Long, p_id: Long)
 
 # --[ 施設ページ ]----------------------------------------------------------------
 GET  /facility/list                    controllers.facility.FacilityController.list
