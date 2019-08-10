@@ -7,7 +7,7 @@
 
 @import controllers.routes.Assets
 @import play.twirl.api.TwirlFeatureImports._
-@(path: String, alt: String, classes: String = "", maxSize: Int = 2)
+@(path: String, alt: String, classes: String = "", maxSize: Int = 2, width: Int = 0, height: Int = 0)
 
 @** 画像のサイズ指定表記 *@
 @srcset(fname: String, ext: String, maxSize: Int) = {
@@ -31,5 +31,7 @@
     @if(classes.length > 0) { class = "@classes" }
     src    = "@Assets.versioned(fpath)"
     srcset = "@srcset(fname, ext, maxSize)"
+    @if(width > 0) {width = "@width"}
+    @if(height > 0) {height = "@height"}
   >
 }}}}
