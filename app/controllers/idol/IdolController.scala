@@ -5,7 +5,7 @@ import play.api.mvc.{AbstractController, MessagesControllerComponents}
 import persistence.idol.dao.IdolDao
 import persistence.idol.model.Idol
 import model.site.idol.SiteViewIdolList
-
+import model.site.idol.SiteViewIdolDetail
 import model.component.util.ViewValuePageLayout
 
 class IdolController @javax.inject.Inject()(
@@ -27,6 +27,19 @@ class IdolController @javax.inject.Inject()(
       )
       // printf(idolSeq(1).name)
       Ok(views.html.site.idol.list.Main(vv))
+    }
+  }
+
+  def detail(id: Long) = Action.async { implicit request =>
+    for{
+      idolA <- idolDao.get(id)
+    } yield {
+      val vv = SiteViewIdolDetail(
+        layout = ViewValuePageLayout(id = request.uri),
+        idol   = idolA.get
+      )
+      // printf(idolSeq(1).name)
+      Ok(views.html.site.idol.detail.Main(vv))
     }
   }
 }

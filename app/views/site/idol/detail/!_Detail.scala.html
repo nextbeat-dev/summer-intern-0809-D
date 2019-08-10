@@ -1,0 +1,26 @@
+@*
+* This file is part of the Nextbeat services.
+*
+* For the full copyright and license information,
+* please view the LICENSE file that was distributed with this source code.
+*@
+@import views.html.helper
+@import model.site.idol.SiteViewIdolDetail
+@import play.api.data.Form
+
+@(vv: SiteViewIdolDetail)(implicit messages: play.api.i18n.Messages)
+
+@** 施設検索一覧 *@
+@views.html.common.layout.InnerContent("site-app-new-user-form", "content") {
+@** --[ 見出し ]---------------------------------------------------------- *@
+<h5 class="content__section header">
+    アイドル
+</h5>
+
+@** --[ 紹介ページ ]-------------------------------------------------------- *@
+
+vv.name <b>
+vv.profile <b>
+vv.twitterId <b>
+
+}

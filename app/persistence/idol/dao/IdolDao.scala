@@ -37,7 +37,7 @@ class IdolDao @javax.inject.Inject()(
   /**
    * アイドル情報を１件取得
    */
-  def get(id: Idol.Id): Future[Option[Idol]]= 
+  def get(id: Idol.Id): Future[Option[Idol]] =
     db.run{
       slick
         .filter(_.id === id)
