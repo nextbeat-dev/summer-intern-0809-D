@@ -11,6 +11,10 @@ import mvc.action.AuthenticationAction
 import model.site.idol.SiteViewIdolDetail
 import model.site.product.SiteViewProductDetail
 import model.component.util.ViewValuePageLayout
+import persistence.idol.model.Idol
+import persistence.product.model.Product
+
+
 
 // 商品
 class ProductController @javax.inject.Inject()(
@@ -42,23 +46,24 @@ class ProductController @javax.inject.Inject()(
         layout  = ViewValuePageLayout(id = request.uri),
         product = product
       )
-      Ok(views.html.site.product.detail.Main(vvIdol, vvProduct))
+      Ok(views.html.site.product.detail.Main(vvIdol, vvProduct, idolId, productId))
 
       // とりあえずrecruitページに飛ぶ
       // Redirect("/recruit/intership-for-summer-21")
     }
   }
 
-  def purchase(idolId: Long, productId: Long) = (Action andThen AuthenticationAction()) { implicit userRequest =>
-    purchaseHistoryDao.add(
-      PurchaseHistory(
-        None,
-        userRequest.userId,
-        productId,
-        1,
-        idolId
-      )
-    )
+//  def purchase(idolId: Idol.Id, productId: Product.Id) = (Action andThen AuthenticationAction()) { implicit userRequest =>
+  def purchase(idolId: Idol.Id, productId: Product.Id) = Action { implicit userRequest =>
+    val insertData:PurchaseHistory = PurchaseHistory(
+          None,
+          1,
+          productId,
+          1,
+          idolId,
+        )
+    print(insertData)
+    purchaseHistoryDao.add(insertData)
     Redirect("/recruit/intership-for-summer-21")
   }
 }

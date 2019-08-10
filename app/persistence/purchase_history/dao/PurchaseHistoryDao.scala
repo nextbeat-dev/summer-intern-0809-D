@@ -27,14 +27,15 @@ class PurchaseHistoryDao @javax.inject.Inject()(
   /**
    * アイドル情報を追加する
    */
-  def add(data: PurchaseHistory): Future[PurchaseHistory.Id] =
+  def add(data: PurchaseHistory) =
     db.run{
-      data.id match {
-        case None => slick returning slick.map(_.id) += data
-        case Some(_) => DBIO.failed(
-          new IllegalArgumentException("The given object is already assigned id.")
-        )
-      }
+//      data.id match {
+//        case None => slick returning slick.map(_.id) += data
+//        case Some(_) => DBIO.failed(
+//          new IllegalArgumentException("The given object is already assigned id.")
+//        )
+//      }
+      slick returning slick.map(_.id) += data
     }
 
 
