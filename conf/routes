@@ -6,8 +6,13 @@
 GET   /app/new-user                     controllers.app.NewUserController.viewForApp
 POST  /app/new-user                     controllers.app.NewUserCommitController.application
 
-# --[ アイドル一覧ページ ]----------------------------------------------------------------
+# --[ アイドルページ ]----------------------------------------------------------------
 GET   /idol                             controllers.idol.IdolController.list
+GET   /idol/:id                         controllers.idol.IdolController.detail(id: Long)
+
+# --[ 商品ページ ]----------------------------------------------------------------
+GET   /product/:i_id/:p_id              controllers.product.ProductController.detail(i_id: Long, p_id: Long)
+# POST  /product/:i_id/:p_id              controllers.product.ProductController.purchase(i_id: Long, p_id: Long)
 
 # --[ 施設ページ ]----------------------------------------------------------------
 GET  /facility/list                    controllers.facility.FacilityController.list
