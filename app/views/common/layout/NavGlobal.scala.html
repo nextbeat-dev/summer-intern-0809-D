@@ -21,3 +21,50 @@
     </h1>
   </div>
 </header>
+
+<!-- Carousel
+  ================================================== -->
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+<!-- Indicators -->
+<ol class="carousel-indicators">
+  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+  <li data-target="#myCarousel" data-slide-to="1"></li>
+</ol>
+<div class="carousel-inner" role="listbox">
+  <div class="item active">
+    @views.html.common.component.image.ResponsiveImage(
+      path    = "site/top/main.jpg",
+      alt     = "アイドルライブ",
+      classes = "first-slide",
+      maxSize = 1
+    )
+    <div class="container">
+      <div class="carousel-caption">
+        <h1>ご当地アイドルおすすめの地方特産品を購入しよう！</h1>
+        <p>あなたの購入が地域の活性化につながります</p>
+        <!-- <p><a class="btn btn-lg btn-success" href="/idol" role="button">今すぐ始める</a></p> -->
+      </div>
+    </div>
+  </div>
+  <div class="item">
+    @views.html.common.component.image.ResponsiveImage(
+      path    = "site/top/main2.png",
+      alt     = "地方特産品",
+      classes = "second-slide",
+      maxSize = 1
+    )
+    <div class="container">
+      <div class="carousel-caption">
+      </div>
+    </div>
+  </div>
+</div>
+<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+  <span class="sr-only">Previous</span>
+</a>
+<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+  <span class="sr-only">Next</span>
+</a>
+</div>

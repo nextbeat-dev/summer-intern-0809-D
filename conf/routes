@@ -6,16 +6,22 @@
 GET   /app/new-user                     controllers.app.NewUserController.viewForApp
 POST  /app/new-user                     controllers.app.NewUserCommitController.application
 
+# --[ アイドルページ ]----------------------------------------------------------------
+GET   /idol                             controllers.idol.IdolController.list
+GET   /idol/:id                         controllers.idol.IdolController.detail(id: Long)
 
+# --[ 商品ページ ]----------------------------------------------------------------
+GET   /product/:i_id/:p_id              controllers.product.ProductController.detail(i_id: Long, p_id: Long)
+POST  /product/:i_id/:p_id              controllers.product.ProductController.purchase(i_id: Long, p_id: Long)
 
 # --[ 施設ページ ]----------------------------------------------------------------
 GET  /facility/list                    controllers.facility.FacilityController.list
 GET  /facility/search                  controllers.facility.FacilityController.search
 
-# --[ 特集ページ ]--------------------------------------------------------------
-GET  /recruit/intership-for-summer-21  controllers.recruit.InternshipForSummer21Controller.view
+# --[ トップページ ]--------------------------------------------------------------
+GET  /top                              controllers.TopController.view
 
 # --[ その他 ]------------------------------------------------------------------
 GET  /assets/*file  controllers.Assets.versioned(path = "/public", file)
-GET  /              controllers.ApplicationController.redirect(to = "/recruit/intership-for-summer-21", from = "")
-GET  /*path         controllers.ApplicationController.redirect(to = "/recruit/intership-for-summer-21", path: String)
+GET  /              controllers.ApplicationController.redirect(to = "/top", from = "")
+GET  /*path         controllers.ApplicationController.redirect(to = "/top", path: String)

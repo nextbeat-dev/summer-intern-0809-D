@@ -1,0 +1,88 @@
+@*
+ * This file is part of the Nextbeat services.
+ *
+ * For the full copyright and license information,
+ * please view the LICENSE file that was distributed with this source code.
+ *@
+
+@**
+ * アイレコ: メインビジュアル
+ *@
+@views.html.common.layout.InnerContent("site-top-form", "content") {
+  <!-- Marketing messaging and featurettes
+  ================================================== -->
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+
+  <div class="container marketing" id="kiso">
+    <h1 class="display-2">アイレコ (Idol Recommendation)とは</h1>
+    <h4>好きなご当地アイドルのページから、おすすめの地方特産品を購入しよう！ </br> たくさん購入すればアイドルから素敵な限定特典が貰えるかも!? </br> 月ごとの売り上げによって、アイドルの人気度が上昇します。</h4>
+
+
+    <div class="button_wrapper">
+        <!-- <button type="button" class="btn btn-danger" >ボタン1</button> -->
+        <p><a class="btn btn-lg btn-danger" href="/idol" role="button">今すぐ始める</a></p>
+    </div>
+
+    
+
+    <hr class="featurette-divider">
+
+    <h1 class="display-2">地方の特産品</h1>
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+      <div class="col-lg-3">
+        @views.html.common.component.image.ResponsiveImage(
+          path    = "site/top/niku.jpg",
+          alt     = "肉",
+          classes = "img-circle",
+          maxSize = 1,
+          width = 200,
+          height = 200
+        )
+        <h2>肉</h2>
+        <p>日本全国の地域が誇る絶品国産和牛をお届けします。 豊かな自然の中で育ち、味・品質ともに最高ランクです。</p>
+        <p><a class="btn btn-default" href="#" role="button">詳細 »</a></p>
+      </div>
+      <div class="col-lg-3">
+        @views.html.common.component.image.ResponsiveImage(
+          path    = "site/top/yasai.jpg",
+          alt     = "野菜",
+          classes = "img-circle",
+          maxSize = 1,
+          width = 200,
+          height = 200
+        )
+        <h2>野菜</h2>
+        <p>季節にあった食べ頃の新鮮なお野菜をお届けします。地域の気候風土を生かして、丁寧に育てています。
+        <p><a class="btn btn-default" href="#" role="button">詳細 »</a></p>
+      </div>
+      <div class="col-lg-3">
+        @views.html.common.component.image.ResponsiveImage(
+          path    = "site/top/sakana.jpg",
+          alt     = "魚",
+          classes = "img-circle",
+          maxSize = 1,
+          width = 200,
+          height = 200
+        )
+        <h2>魚介類</h2>
+        <p> 地方で朝に水揚げした鮮魚を、産地直送でお届けします。日本全国の海の幸をご賞味あれ。</p>
+        <p><a class="btn btn-default" href="#" role="button">詳細 »</a></p>
+      </div>
+      <div class="col-lg-3">
+        @views.html.common.component.image.ResponsiveImage(
+          path    = "site/top/sake.jpg",
+          alt     = "地酒",
+          classes = "img-circle",
+          maxSize = 1,
+          width = 200,
+          height = 200
+        )
+        <h2>地酒</h2>
+        <p>日本各地の日本酒、焼酎、地ビールなどの各種地酒を取り揃えています。こだわりの一本を見つけてみませんか。</p>
+        <p><a class="btn btn-default" href="#" role="button">詳細 »</a></p>
+      </div>
+    </div>
+
+  </div>
+}
