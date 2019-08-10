@@ -23,10 +23,8 @@
 
 <div class="container">
     <!-- 検索結果 -->
-    <div class="col-md-6-lg-6">
-        <div class="col">
+        <ul class="list">
             @for(data <- vv.idols) {
-            <div class="col-xs-3">
                 <li><a href="@controllers.idol.routes.IdolController.detail(data.id.get)">
                     <div class="thumbnail">
                         @views.html.common.component.image.ResponsiveImage(
@@ -41,14 +39,14 @@
                             <p></p>
                             <p class="text-center text-muted">@data.profile</p>
                             <h4 class="text-center">@data.name</h4>
-                            <i class="fab fa-twitter-square fa-2x my-skyblue icon"></i>
+                            <a href="https://twitter.com/@data.twitterId">
+                                <i class="fab fa-twitter-square fa-2x my-skyblue icon"></i>
+                            </a>
                         </div>
                     </div>
                 </a></li>
-            </div>
             }
-        </div>
-    </div>
+        </ul>
 </div>
 }
 
