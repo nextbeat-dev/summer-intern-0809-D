@@ -6,7 +6,8 @@
 GET   /app/new-user                     controllers.app.NewUserController.viewForApp
 POST  /app/new-user                     controllers.app.NewUserCommitController.application
 
-
+# --[ アイドル一覧ページ ]----------------------------------------------------------------
+GET   /idol                             controllers.idol.IdolController.list
 
 # --[ 施設ページ ]----------------------------------------------------------------
 GET  /facility/list                    controllers.facility.FacilityController.list

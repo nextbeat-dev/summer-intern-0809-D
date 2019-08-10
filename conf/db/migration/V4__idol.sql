@@ -20,3 +20,4 @@ INSERT INTO "idol" ("name", "profile", "twitter_id") VALUES ('Idol 7', 'Profile 
 INSERT INTO "idol" ("name", "profile", "twitter_id") VALUES ('Idol 8', 'Profile 2', '@<TEST 8>');
 INSERT INTO "idol" ("name", "profile", "twitter_id") VALUES ('Idol 9', 'Profile 3', '@<TEST 9>');
 INSERT INTO "idol" ("name", "profile", "twitter_id") VALUES ('Idol 10', 'Profile 1', '@<TEST 10>');
+
