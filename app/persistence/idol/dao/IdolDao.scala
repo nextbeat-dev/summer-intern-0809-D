@@ -34,6 +34,24 @@ class IdolDao @javax.inject.Inject()(
       }
     }
 
+  /**
+   * アイドル情報を１件取得
+   */
+  def get(id: Idol.Id): Future[Option[Idol]]= 
+    db.run{
+      slick
+        .filter(_.id === id)
+        .result.headOption
+    }
+
+  /**
+   * アイドル情報を全件取得
+   */
+  def findAll: Future[Seq[Idol]] =
+    db.run{
+      slick.result
+    }
+
   // --[ テーブル定義 ] --------------------------------------------------------
   class IdolTable(tag: Tag) extends Table[Idol](tag, "idol_table") {
 

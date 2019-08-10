@@ -33,7 +33,6 @@ object Idol{
       t => Idol(None, t._1, t._2, t._3)
     ))(Idol.unapply(_).map(
       t => (t._2, t._3, t._4)
-      // t => (t._2, t._3, t._4)
     ))
   )
 }
