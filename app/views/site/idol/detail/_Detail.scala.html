@@ -8,19 +8,37 @@
 @import model.site.idol.SiteViewIdolDetail
 @import play.api.data.Form
 
+@import persistence.facility.model.FacilitySearch
 @(vv: SiteViewIdolDetail)(implicit messages: play.api.i18n.Messages)
 
 @** 施設検索一覧 *@
 @views.html.common.layout.InnerContent("site-app-new-user-form", "content") {
-@** --[ 見出し ]---------------------------------------------------------- *@
-<h5 class="content__section header">
-    アイドル
-</h5>
 
-@** --[ 紹介ページ ]-------------------------------------------------------- *@
+<h1 class="content__section header">
+    @vv.idol.get.name (東京都)
+</h1>
 
-vv.name <b>
-vv.profile <b>
-vv.twitterId <b>
+<div class="container marketing" id="kiso">
+    <div class="row featurette">
+        <div class="col-md-7 col-md-push-5">
+            <p class="lead">@vv.idol.get.profile</p>
+        </div>
+        <div class="col-md-5 col-md-pull-7">
+            @views.html.common.component.image.ResponsiveImage(
+                path    = s"site/idol/list/${vv.idol.get.id.get}.png",
+                alt     = "500x500",
+                classes = "featurette-image img-responsive center-block",
+                maxSize = 1,
+                width = 500,
+                height = 500
+            )
+        </div>
+    </div>
 
+    <hr class="featurette-divider">
+
+    <h1 class="display-2">おすすめの地方特産品</h1>
+ 
+
+</div>
 }
