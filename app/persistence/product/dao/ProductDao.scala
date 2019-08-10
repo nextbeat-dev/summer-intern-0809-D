@@ -7,8 +7,9 @@
 
 package persistence.product.dao
 
-import scala.concurrent.Future
+import java.time.LocalDateTime
 
+import scala.concurrent.Future
 import slick.jdbc.JdbcProfile
 import play.api.db.slick.DatabaseConfigProvider
 import play.api.db.slick.HasDatabaseConfigProvider
@@ -45,16 +46,21 @@ class ProductDAO @javax.inject.Inject()(
     /* @3 */ def price      = column[Int]         ("price")
     /* @4 */ def stock      = column[Int]         ("stock")
     /* @5 */ def detail   = column[String]       ("detail")
+    /* @6 */ def updatedAt = column[LocalDateTime]("updated_at")
+    /* @7 */ def createdAt = column[LocalDateTime]("created_at")
 
 
     // The * projection of the table
     def * = (
-      id.?, name, price, stock, detail
+      id.?, name, price, stock, detail,
+      updatedAt, createdAt
     ) <> (
       /** The bidirectional mappings : Tuple(table) => Model */
       (Product.apply _).tupled,
       /** The bidirectional mappings : Model => Tuple(table) */
-      Product.unapply
+      (v: TableElementType) => Product.unapply(v).map(_.copy(
+        _6 = LocalDateTime.now
+      ))
     )
   }
 }
