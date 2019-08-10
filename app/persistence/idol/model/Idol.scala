@@ -1,4 +1,4 @@
-package persistence.Idol.model
+package persistence.idol.model
 
 import play.api.data._
 import play.api.data.Forms._
@@ -6,15 +6,15 @@ import java.time.LocalDateTime
 
 // アイドル情報
 //~~~~~~~~~~~~~~
-case class Idol{
-  id: Option[Idol.Id],                           // アイドルのID
-  // groupId: Option[Group.Id],                     // アイドルのグループID
-  name: String,                                  // アイドル名
-  profile: String,                               // アイドル情報
+case class Idol(
+  id:        Option[Idol.Id],                           // アイドルのID
+  // groupId:   Option[Group.Id],                     // アイドルのグループID
+  name:      String,                                  // アイドル名
+  profile:   String,                               // アイドル情報
   twitterId: String,                             // アイドル個人のTwitterのID
   updatedAt: LocalDateTime = LocalDateTime.now,  // データ更新日
   createdAt: LocalDateTime = LocalDateTime.now   // データ作成日
-}
+)
 
 // コンパニオンオブジェクト
 //~~~~~~~~~~~~~~~~~~~~~
@@ -32,7 +32,7 @@ object Idol{
     )(Function.untupled(
       t => Idol(None, t._1, t._2, t._3)
     ))(Idol.unapply(_).map(
-      t => (t._2, t._3, t_4)
+      t => (t._2, t._3, t._4)
       // t => (t._2, t._3, t._4)
     ))
   )

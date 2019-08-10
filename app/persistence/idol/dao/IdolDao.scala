@@ -1,6 +1,6 @@
 package persistence.idol.dao
 
-// import java.time.LocalDateTime
+import java.time.LocalDateTime
 import scala.concurrent.Future
 
 import slick.jdbc.JdbcProfile
@@ -24,7 +24,7 @@ class IdolDao @javax.inject.Inject()(
   /**
    * アイドル情報を追加する
    */
-  def add(data: Idol): Future[Idol.id] =
+  def add(data: Idol): Future[Idol.Id] =
     db.run{
       data.id match {
         case None => slick returning slick.map(_.id) += data
@@ -38,23 +38,23 @@ class IdolDao @javax.inject.Inject()(
   class IdolTable(tag: Tag) extends Table[Idol](tag, "idol_table") {
 
     // Table's columns
-    /* @1 */ def id        = column[Idol.Id]
-    /* @2 */ def name      = column[String]
-    /* @3 */ def profile   = column[String]
-    /* @4 */ def twitterId = column[String]
-    /* @5 */ def updatedAt = column[LocalDateTime]
-    /* @6 */ def createdAt = column[LocalDateTime]
+    /* @1 */ def id        = column[Idol.Id]       ("id", O.PrimaryKey, O.AutoInc)  // ユーザID
+    /* @2 */ def name      = column[String]        ("name")              // アイドルの名前
+    /* @3 */ def profile   = column[String]        ("profile")           // アイドルの情報
+    /* @4 */ def twitterId = column[String]        ("twitter_id")        // アイドルのTwitterのID
+    /* @5 */ def updatedAt = column[LocalDateTime] ("updated_at")        // データ更新日
+    /* @6 */ def createdAt = column[LocalDateTime] ("created_at")        // データ作成日
 
     // The * projection of the table
     def * = (
       id.?, name, profile, twitterId, updatedAt, createdAt
     ) <> (
       /** The bidirectional mappings : Tuple(table) => Model */
-      (User.apply _).tupled,
+      (Idol.apply _).tupled,
       /** The bidirectional mappings : Model => Tuple(table) */
-      (v: TableElementType) => User.unapply(v).map(_.copy(
+      (v: TableElementType) => Idol.unapply(v).map(_.copy(
         _5 = LocalDateTime.now
       ))
     )
   }
-  
+}
