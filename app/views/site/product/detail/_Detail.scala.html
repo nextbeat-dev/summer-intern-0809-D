@@ -7,17 +7,57 @@
 
 @** 商品詳細 *@
 @views.html.common.layout.InnerContent("site-app-new-user-form", "content") {
+  @vvIdol.idol.id <b></b>
   @vvIdol.idol.name <b></b>
   @vvIdol.idol.profile <b></b>
   @vvIdol.idol.twitterId <b></b>
   <b></b><b></b><b></b>
 
+  @vvProduct.product.get.id <b></b>
   @vvProduct.product.get.name <b></b>
   @vvProduct.product.get.price <b></b>
   @vvProduct.product.get.stock <b></b>
   @vvProduct.product.get.detail <b></b>
 
+@** --[ 見出し ]---------------------------------------------------------- *@
+<h3 class="content__section header">
+  地方特産品
+</h3>
+
+@** --[ 一覧 ]-------------------------------------------------------- *@
+<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+
+<div class="container">
+  <!-- 検索結果 -->
+  <div class="col-md-5">
+    <div class="thumbnail">
+      @views.html.common.component.image.ResponsiveImage(
+      path    = "site/product/1.jpg",
+      alt     = "アイテムイメージ",
+      classes = "item-img",
+      maxSize = 1,
+      width = 300,
+      height = 300
+      )
+    </div>
+  </div>
+  <div class="col-md-7">
+    <h4 class="text-center">カンガルー サーロイン ブロック 450g</h4>
+    <h5 class="text-center">2,990円 + プラス税アイコン</h5>
+    <p class="text-center text-muted">在庫 3</p>
+    <p class="text">
+      【カンガルー肉について】
+      オーストラリアではカンガルーは「ルー」と呼ばれていて、スーパーなどでも手軽に買えます。そんなルーミートが現在世界からの注目を集めているってこと知っていました？理由は脂肪分が極めて少なく、高タンパク、そして低コレストロール。聞くところによるとオーストラリア国立心臓病学会で食生活改善のための推奨食材に認定されているらしい。
+
+      ヘルシー、テイスティー、環境にやさしい、などの理由からカンガルー肉がヒットチャート上昇中！
+      その上、野生なのでホルモン剤、抗生物質、その他化学薬品などは一切使用されていないのは言うまでもなく．．．基本的には有機食肉なのですが、ご存知の通り、有機（オーガニック）と呼ぶためには、捕獲してオーガニック認定牧場内で飼育しなければいけないので、反対に野生ではなくなってしまうんです。
+      カンガルーをオーストラリア未開拓奥地（the great Australian outback）の管理人と呼ぶ人もいますが、その理由はクッションの効いた大きな足は牛や羊、ラグビープレイヤー！？などのように、固有の植物を踏みつけて歩かないからだそうです。
+      そんな習性も気に入って、直接オーストラリアからカンガルー肉を輸入することにしました。ということで、沢山在庫があります。買ってくださ い。Ｐｌｅａｓｅ、たくさ～ん買ってくださ
+    </p>
+  </div>
+</div>
   @helper.form(action = controllers.product.routes.ProductController.purchase(idolId, productId)){
     <input type="submit" value="購入">
   }
 }
+
