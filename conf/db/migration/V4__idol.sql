@@ -1,7 +1,7 @@
 -- アイドル定義 (sample)
 ----------------------
-CREATE TABLE "idol"(
-  "id"          INT             NOT     NULLAUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE "idol" (
+  "id"          INT             NOT     NULL AUTO_INCREMENT PRIMARY KEY,
   "name"        VARCHAR(255)    NOT     NULL,
   "profile"     VARCHAR(1024*5) DEFAULT NULL,
   "twitter_id"  VARCHAR(255)    DEFAULT NULL,
