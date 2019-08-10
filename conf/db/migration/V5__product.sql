@@ -1,4 +1,4 @@
--- 施設定義 (sample)
+-- sample定義 (sample)
 --------------
 CREATE TABLE "product" (
   "id"          INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -6,6 +6,8 @@ CREATE TABLE "product" (
   "price"       INT          NOT NULL,
   "stock"       INT          NOT NULL,
   "detail"      VARCHAR(255) NOT NULL,
+  "updated_at"  timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  "created_at"  timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
 -- 商品情報 (sample)
