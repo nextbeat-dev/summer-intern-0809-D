@@ -20,13 +20,14 @@ import scala.concurrent.Future
 
 // DAO: アイドル-商品間の操作
 //~~~~~~~~~~~~~~~~~~
-class IdleProductsDAO @javax.inject.Inject()(
+class IdolProductsDAO @javax.inject.Inject()(
                                               val dbConfigProvider: DatabaseConfigProvider
                                             ) extends HasDatabaseConfigProvider[JdbcProfile] {
   import profile.api._
 
   // --[ リソース定義 ] --------------------------------------------------------
   lazy val slick = TableQuery[IdolProductsTable]
+  lazy val slick_p = TableQuery[ProductTable]
 
   // --[ データ処理定義 ] ------------------------------------------------------
   /**
@@ -36,8 +37,13 @@ class IdleProductsDAO @javax.inject.Inject()(
 
   def getProductsByIdolid(idolId: Idol.Id) =
     db.run{
-      slick
-        .filter(_.id === idolId)
+      slick_p
+        .filter(_.id.in
+          (slick
+              .filter(_.idol_id === idolId)
+            .map(p => p.product_id)
+          )
+        )
         .result
     }
 
@@ -66,6 +72,33 @@ class IdleProductsDAO @javax.inject.Inject()(
       /** The bidirectional mappings : Model => Tuple(table) */
       (v: TableElementType) => IdolProducts.unapply(v).map(_.copy(
         _5 = LocalDateTime.now
+      ))
+    )
+  }
+
+  class ProductTable(tag: Tag) extends Table[Product](tag, "product") {
+
+
+    // Table's columns
+    /* @1 */ def id    = column[Product.Id]   ("id", O.PrimaryKey, O.AutoInc)
+    /* @2 */ def name     = column[String]       ("name")
+    /* @3 */ def price      = column[Int]         ("price")
+    /* @4 */ def stock      = column[Int]         ("stock")
+    /* @5 */ def detail   = column[String]       ("detail")
+    /* @6 */ def updatedAt = column[LocalDateTime]("updated_at")
+    /* @7 */ def createdAt = column[LocalDateTime]("created_at")
+
+
+    // The * projection of the table
+    def * = (
+      id.?, name, price, stock, detail,
+      updatedAt, createdAt
+    ) <> (
+      /** The bidirectional mappings : Tuple(table) => Model */
+      (Product.apply _).tupled,
+      /** The bidirectional mappings : Model => Tuple(table) */
+      (v: TableElementType) => Product.unapply(v).map(_.copy(
+        _6 = LocalDateTime.now
       ))
     )
   }
