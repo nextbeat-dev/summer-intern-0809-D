@@ -2,10 +2,12 @@ package persistence.purchase_history.dao
 
 import java.time.LocalDateTime
 
+import persistence.idol
 import persistence.product.model
 import persistence.purchase_history.model.PurchaseHistory
 import persistence.udb.model.User
 import persistence.product.model.Product
+import persistence.idol.model.Idol
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 import slick.jdbc.JdbcProfile
 
@@ -44,19 +46,20 @@ class PurchaseHistoryDao @javax.inject.Inject()(
     /* @2 */ def user_id= column[User.Id] ("user_id") // 購入したファンのid
     /* @3 */ def product_id = column[Product.Id] ("product_id") // 購入された商品のid
     /* @4 */ def purchase_num = column[Int] ("purchase_num") // 購入された数
-    /* @5 */ def updatedAt = column[LocalDateTime] ("updated_at") // データ更新日
-    /* @6 */ def createdAt = column[LocalDateTime] ("created_at") // データ作成日
+    /* @5 */ def idol_id = column[Idol.Id] ("idol_id") // 購入された商品のid
+    /* @6 */ def updatedAt = column[LocalDateTime] ("updated_at") // データ更新日
+    /* @7 */ def createdAt = column[LocalDateTime] ("created_at") // データ作成日
 
     // The * projection of the table
     def * = (
-      id.?, user_id, product_id, purchase_num,
+      id.?, user_id, product_id, purchase_num, idol_id,
       updatedAt, createdAt
     ) <> (
       /** The bidirectional mappings : Tuple(table) => Model */
       (PurchaseHistory.apply _).tupled,
       /** The bidirectional mappings : Model => Tuple(table) */
       (v: TableElementType) => PurchaseHistory.unapply(v).map(_.copy(
-        _5 = LocalDateTime.now
+        _6 = LocalDateTime.now
       ))
     )
   }
