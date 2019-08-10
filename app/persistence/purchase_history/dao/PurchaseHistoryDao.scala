@@ -2,14 +2,16 @@ package persistence.purchase_history.dao
 
 import java.time.LocalDateTime
 
-import persistence.purchase_history.model
+import persistence.product.model
+import persistence.purchase_history.model.PurchaseHistory
+import persistence.udb.model.User
+import persistence.product.model.Product
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 import slick.jdbc.JdbcProfile
 
 import scala.concurrent.Future
-// import persistence.geo.model.Location
 
-// DAO: アイドル情報
+// DAO: 購入履歴情報
 //~~~~~~~~~~~~~~~~
 class PurchaseHistoryDao @javax.inject.Inject()(
   val dbConfigProvider: DatabaseConfigProvider
@@ -17,13 +19,13 @@ class PurchaseHistoryDao @javax.inject.Inject()(
   import profile.api._
 
   // --[ リソース定義 ] --------------------------------------------------------
-  lazy val slick = TableQuery[IdolTable]
+  lazy val slick = TableQuery[PurchaseHistoryTable]
 
   // --[ データ処理定義 ] ------------------------------------------------------
   /**
    * アイドル情報を追加する
    */
-  def add(data: model.PurchaseHistory): Future[model.PurchaseHistory.Id] =
+  def add(data: PurchaseHistory): Future[PurchaseHistory.Id] =
     db.run{
       data.id match {
         case None => slick returning slick.map(_.id) += data
@@ -33,43 +35,27 @@ class PurchaseHistoryDao @javax.inject.Inject()(
       }
     }
 
-  /**
-   * アイドル情報を１件取得
-   */
-  def get(id: model.PurchaseHistory.Id): Future[Option[model.PurchaseHistory]]=
-    db.run{
-      slick
-        .filter(_.id === id)
-        .result.headOption
-    }
-
-  /**
-   * アイドル情報を全件取得
-   */
-  def findAll: Future[Seq[model.PurchaseHistory]] =
-    db.run{
-      slick.result
-    }
 
   // --[ テーブル定義 ] --------------------------------------------------------
-  class IdolTable(tag: Tag) extends Table[model.PurchaseHistory](tag, "idol") {
+  class PurchaseHistoryTable(tag: Tag) extends Table[PurchaseHistory](tag, "purchase_history") {
 
     // Table's columns
-    /* @1 */ def id        = column[model.PurchaseHistory.Id]       ("id", O.PrimaryKey, O.AutoInc)  // ユーザID
-    /* @2 */ def name      = column[String]        ("name")              // アイドルの名前
-    /* @3 */ def profile   = column[String]        ("profile")           // アイドルの情報
-    /* @4 */ def twitterId = column[String]        ("twitter_id")        // アイドルのTwitterのID
-    /* @5 */ def updatedAt = column[LocalDateTime] ("updated_at")        // データ更新日
-    /* @6 */ def createdAt = column[LocalDateTime] ("created_at")        // データ作成日
+    /* @1 */ def id= column[PurchaseHistory.Id] ("id", O.PrimaryKey, O.AutoInc) // 購入履歴id
+    /* @2 */ def user_id= column[User.Id] ("user_id") // 購入したファンのid
+    /* @3 */ def product_id = column[Product.Id] ("product_id") // 購入された商品のid
+    /* @4 */ def purchase_num = column[Int] ("purchase_num") // 購入された数
+    /* @5 */ def updatedAt = column[LocalDateTime] ("updated_at") // データ更新日
+    /* @6 */ def createdAt = column[LocalDateTime] ("created_at") // データ作成日
 
     // The * projection of the table
     def * = (
-      id.?, name, profile, twitterId, updatedAt, createdAt
+      id.?, user_id, product_id, purchase_num,
+      updatedAt, createdAt
     ) <> (
       /** The bidirectional mappings : Tuple(table) => Model */
-      (model.PurchaseHistory.apply _).tupled,
+      (PurchaseHistory.apply _).tupled,
       /** The bidirectional mappings : Model => Tuple(table) */
-      (v: TableElementType) => model.PurchaseHistory.unapply(v).map(_.copy(
+      (v: TableElementType) => PurchaseHistory.unapply(v).map(_.copy(
         _5 = LocalDateTime.now
       ))
     )
