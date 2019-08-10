@@ -18,7 +18,7 @@ class ProductController @javax.inject.Inject()(
     * 商品詳細ページ
     */
 
-  def detail(productId: Long) = Action.async { implicit request =>
+  def detail(idolId: Long, productId: Long) = Action.async { implicit request =>
     for {
       product <- productDao.get(productId)
     } yield {
