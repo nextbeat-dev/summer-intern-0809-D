@@ -4,7 +4,7 @@ import play.api.i18n.I18nSupport
 import play.api.mvc.{AbstractController, MessagesControllerComponents}
 import persistence.idol.dao.IdolDao
 import persistence.idol.model.Idol
-import model.site.product.SiteViewIdolList
+import model.site.idol.SiteViewIdolList
 import model.component.util.ViewValuePageLayout
 
 class IdolController @javax.inject.Inject()(
@@ -22,7 +22,7 @@ class IdolController @javax.inject.Inject()(
     } yield {
       val vv = SiteViewIdolList(
         layout = ViewValuePageLayout(id = request.uri),
-        idol   = idolSeq
+        idols   = idolSeq
       )
       Ok(views.html.site.idol.list.Main(vv))
     }
