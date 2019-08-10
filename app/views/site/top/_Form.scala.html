@@ -45,7 +45,6 @@
     <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
       <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
     </ol>
     <div class="carousel-inner" role="listbox">
       <div class="item active">
@@ -57,37 +56,21 @@
         )
         <div class="container">
           <div class="carousel-caption">
-            <h1>ご当地アイドルおすすめの地方特産品をこ！</h1>
-            <h1>地方特産品を買ってアイドルを応援しよう！</h1>
-            <p>地域の活性化にもつながります</p>
-            <p><a class="btn btn-lg btn-success" href="/idol/list" role="button">始める</a></p>
+            <h1>ご当地アイドルおすすめの地方特産品を購入しよう！</h1>
+            <p>あなたの購入が地域の活性化につながります</p>
+            <p><a class="btn btn-lg btn-success" href="/idol/list" role="button">今すぐ始める</a></p>
           </div>
         </div>
       </div>
       <div class="item">
         @views.html.common.component.image.ResponsiveImage(
-          path    = "site/top/main.jpg",
-          alt     = "アイドルライブ",
+          path    = "site/top/main2.png",
+          alt     = "地方特産品",
           classes = "second-slide",
           maxSize = 1
         )
         <div class="container">
           <div class="carousel-caption">
-            <h1>hoge</h1>
-            <p><a class="btn btn-lg btn-primary" href="/idol/list" role="button">Learn more</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        @views.html.common.component.image.ResponsiveImage(
-          path    = "site/top/main.jpg",
-          alt     = "アイドルライブ",
-          classes = "third-slide",
-          maxSize = 1
-        )
-        <div class="container">
-          <div class="carousel-caption">
-            <h1>hoge</h1>
           </div>
         </div>
       </div>
@@ -100,7 +83,11 @@
       <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
-  </div><!-- /.carousel -->
+  </div>
+
+ 
+
+
 
 
   <!-- Marketing messaging and featurettes
@@ -108,6 +95,19 @@
   <!-- Wrap the rest of the page in another container to center all the content. -->
 
   <div class="container marketing" id="kiso">
+    <h1 class="display-2">アイレコ (Idol Recommendation)とは</h1>
+    <h4>好きなご当地アイドルのページから、おすすめの地方特産品を購入しよう！ </br> たくさん購入すればアイドルから素敵な限定特典が貰えるかも!? </br> 月ごとの売り上げによって、アイドルの人気度が上昇します。</h4>
+
+
+    <div class="button_wrapper">
+        <!-- <button type="button" class="btn btn-danger" >ボタン1</button> -->
+        <p><a class="btn btn-lg btn-danger" href="/idol/list" role="button">アイドル一覧</a></p>
+    </div>
+
+    
+
+    <hr class="featurette-divider">
+
     <h1 class="display-2">地方の特産品</h1>
     <!-- Three columns of text below the carousel -->
     <div class="row">
@@ -122,7 +122,7 @@
         )
         <h2>肉</h2>
         <p>日本全国の地域が誇る絶品国産和牛をお届けします。 豊かな自然の中で育ち、味・品質ともに最高ランクです。</p>
-        <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+        <p><a class="btn btn-default" href="#" role="button">詳細 »</a></p>
       </div>
       <div class="col-lg-3">
         @views.html.common.component.image.ResponsiveImage(
@@ -135,7 +135,7 @@
         )
         <h2>野菜</h2>
         <p>季節にあった食べ頃の新鮮なお野菜をお届けします。地域の気候風土を生かして、丁寧に育てています。
-        <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+        <p><a class="btn btn-default" href="#" role="button">詳細 »</a></p>
       </div>
       <div class="col-lg-3">
         @views.html.common.component.image.ResponsiveImage(
@@ -148,7 +148,7 @@
         )
         <h2>魚介類</h2>
         <p> 地方で朝に水揚げした鮮魚を、産地直送でお届けします。日本全国の海の幸をご賞味あれ。</p>
-        <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+        <p><a class="btn btn-default" href="#" role="button">詳細 »</a></p>
       </div>
       <div class="col-lg-3">
         @views.html.common.component.image.ResponsiveImage(
@@ -161,59 +161,9 @@
         )
         <h2>地酒</h2>
         <p>日本各地の日本酒、焼酎、地ビールなどの各種地酒を取り揃えています。こだわりの一本を見つけてみませんか。</p>
-        <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-      </div><!-- /.col-lg-4 -->
-    </div><!-- /.row -->
-
-
-    <!-- START THE FEATURETTES -->
-
-      <div class="container" id="ouyo">
-
-    <!-- <hr class="featurette-divider">
-
-
-    <div class="row featurette">
-        <h1 class="display-2">hoge</h1>
-      <div class="col-md-7">
-        <h2 class="featurette-heading">hoge</h2>
-        <p class="lead">hoge</p>
-      </div>
-      <div class="col-md-5">
-        <img class="featurette-image img-responsive center-block" alt="500x500" src="https://drive.google.com/uc?export=view&id=1hchQcvqzwgh_5GZr9lXLngfkZmYYQMO_" width="500" height="500">
+        <p><a class="btn btn-default" href="#" role="button">詳細 »</a></p>
       </div>
     </div>
 
-    <div class="row featurette">
-      <div class="col-md-7 col-md-push-5">
-        <h2 class="featurette-heading">Bioinformatics</h2>
-        <p class="lead">hoge</p>
-      </div>
-      <div class="col-md-5 col-md-pull-7">
-        <img class="featurette-image img-responsive center-block" alt="500x500" src="https://drive.google.com/uc?export=view&id=1I21LucbcG-5L57pWFcA_wLEjvMZyPpXN" width="500" height="500">
-      </div>
-    </div>
-
-    <div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading">Material Informatics</h2>
-        <p class="lead">hoge</p>
-      </div>
-      <div class="col-md-5">
-        <img class="featurette-image img-responsive center-block" alt="500x500" src="https://drive.google.com/uc?export=view&id=1blCiMRV5o6KyxISMWFGEXn8N5xBjN5K9" width="500" height="500">
-      </div>
-    </div> -->
-
-    <hr class="featurette-divider">
-    </div>
-
-    <!-- /END THE FEATURETTES -->
-
-
-    <!-- FOOTER -->
-    <footer>
-      <p class="pull-right"><a href="#">Back to top</a></p>
-    </footer>
-
-  </div><!-- /.container -->
+  </div>
 }
