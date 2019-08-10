@@ -10,7 +10,7 @@ CREATE TABLE "idol" (
 )ENGINE=InnoDB;
 
 -- アイドル情報
-INSERT INTO "idol" ("name", "profile", "twitter_id") VALUES ('Idol 1', 'Profile 1', '@<TEST 1>');
+INSERT INTO "idol" ("name", "profile", "twitter_id") VALUES ('島村卯月', 'シンデレラプロジェクトのメンバー。', '@AyakaOhashi');
 INSERT INTO "idol" ("name", "profile", "twitter_id") VALUES ('Idol 2', 'Profile 2', '@<TEST 2>');
 INSERT INTO "idol" ("name", "profile", "twitter_id") VALUES ('Idol 3', 'Profile 3', '@<TEST 3>');
 INSERT INTO "idol" ("name", "profile", "twitter_id") VALUES ('Idol 4', 'Profile 1', '@<TEST 4>');
