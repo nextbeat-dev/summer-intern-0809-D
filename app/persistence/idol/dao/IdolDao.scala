@@ -37,7 +37,7 @@ class IdolDao @javax.inject.Inject()(
   /**
    * アイドル情報を１件取得
    */
-  def get(id: Idol.Id): Future[Option[Idol]]= 
+  def get(id: Idol.Id): Future[Option[Idol]] =
     db.run{
       slick
         .filter(_.id === id)
@@ -57,21 +57,22 @@ class IdolDao @javax.inject.Inject()(
 
     // Table's columns
     /* @1 */ def id        = column[Idol.Id]       ("id", O.PrimaryKey, O.AutoInc)  // ユーザID
-    /* @2 */ def name      = column[String]        ("name")              // アイドルの名前
-    /* @3 */ def profile   = column[String]        ("profile")           // アイドルの情報
-    /* @4 */ def twitterId = column[String]        ("twitter_id")        // アイドルのTwitterのID
-    /* @5 */ def updatedAt = column[LocalDateTime] ("updated_at")        // データ更新日
-    /* @6 */ def createdAt = column[LocalDateTime] ("created_at")        // データ作成日
+    /* @2 */ def name      = column[String]        ("name")                         // アイドルの名前
+    /* @3 */ def profile   = column[String]        ("profile")                      // アイドルの情報
+    /* @4 */ def twitterId = column[String]        ("twitter_id")                   // アイドルのTwitterのID
+    /* @5 */ def location  = column[String]        ("location")                     // アイドルの出身地
+    /* @6 */ def updatedAt = column[LocalDateTime] ("updated_at")                   // データ更新日
+    /* @7 */ def createdAt = column[LocalDateTime] ("created_at")                   // データ作成日
 
     // The * projection of the table
     def * = (
-      id.?, name, profile, twitterId, updatedAt, createdAt
+      id.?, name, profile, twitterId, location, updatedAt, createdAt
     ) <> (
       /** The bidirectional mappings : Tuple(table) => Model */
       (Idol.apply _).tupled,
       /** The bidirectional mappings : Model => Tuple(table) */
       (v: TableElementType) => Idol.unapply(v).map(_.copy(
-        _5 = LocalDateTime.now
+        _6 = LocalDateTime.now
       ))
     )
   }
