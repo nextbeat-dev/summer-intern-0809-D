@@ -38,12 +38,31 @@
     <hr class="featurette-divider">
 
     <h1 class="display-2">おすすめの地方特産品</h1>
-    @for(product <- vv.products) {
-        <p>
-            @product
-        </p>
 
-    }
+
+    <div class="col-md-6-lg-6">
+        <div class="col">
+            @for(product <- vv.products) {
+            <div class="col-xs-3">
+                <a href="@controllers.product.routes.ProductController.detail(vv.idol.id.get, product.id.get)">
+                    <div class="thumbnail">
+                        @views.html.common.component.image.ResponsiveImage(
+                        path    = s"site/product/${product.id.get}.jpg",
+                        alt     = "商品画像",
+                        classes = "product-img",
+                        maxSize = 1,
+                        width = 150,
+                        height = 150
+                        )
+                        <div class="caption">
+                            <p class="text-center text-muted">@product.name</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            }
+        </div>
+    </div>
  
 
 </div>
