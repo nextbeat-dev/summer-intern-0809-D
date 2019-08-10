@@ -16,7 +16,7 @@ import persistence.product.model.Product
 
 // DAO: 商品情報
 //~~~~~~~~~~~~~~~~~~
-class productDAO @javax.inject.Inject()(
+class ProductDAO @javax.inject.Inject()(
   val dbConfigProvider: DatabaseConfigProvider
 ) extends HasDatabaseConfigProvider[JdbcProfile] {
   import profile.api._
