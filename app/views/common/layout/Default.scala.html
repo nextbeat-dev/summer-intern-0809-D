@@ -24,6 +24,9 @@
     @** CSS登録 *@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i">
     <link rel="stylesheet" type="text/css" href=@Assets.versioned("app/main.css")>
+    <link rel="stylesheet" type="text/css" href=@Assets.versioned("app/bootstrap.css")>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
 
     @** HTMLの動作や状態を指定 *@
     <meta http-equiv="Pragma"          content="no-cache">
@@ -38,5 +41,10 @@
     @views.html.common.layout.NavGlobal(vv)
     <main id="main-content">@content</main>
     @views.html.common.layout.NavFooter(vv)
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <!-- Custom styles for this template -->
+    <link href="https://getbootstrap.com/docs/3.3/examples/carousel/carousel.css" rel="stylesheet">
   </body>
 </html>
