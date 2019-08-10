@@ -28,7 +28,7 @@ object Idol{
     mapping(
       "name"                -> nonEmptyText,
       "profile"             -> nonEmptyText,
-      "twitterIdForPerson"  -> nonEmptyText,
+      "twitterId"  -> nonEmptyText,
     )(Function.untupled(
       t => Idol(None, t._1, t._2, t._3)
     ))(Idol.unapply(_).map(
