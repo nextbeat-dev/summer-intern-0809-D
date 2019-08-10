@@ -5,5 +5,6 @@ CREATE TABLE "purchase_history" (
   "user_id"         INT     NOT NULL,
   "product_id"      INT     NOT NULL,
   "purchase_num"    INT     NOT NULL,
+  "idol_id"         INT     NOT NULL,
 ) ENGINE=InnoDB;
 
