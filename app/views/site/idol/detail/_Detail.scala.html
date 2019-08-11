@@ -43,7 +43,7 @@
     <hr class="featurette-divider">
 
     <h1 class="display-2">おすすめの地方特産品</h1>
-    <ul class="list">
+    <ul class="idol_product_list">
         @for(product <- vv.products) {
             <a href="@controllers.product.routes.ProductController.detail(vv.idol.id.get, product.id.get)" style="text-align: left;">
                 <div class="thumbnail thumbnail_with_text" >
