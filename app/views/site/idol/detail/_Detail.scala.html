@@ -14,14 +14,19 @@
 @** 施設検索一覧 *@
 @views.html.common.layout.InnerContent("site-app-new-user-form", "content") {
 
-<h1 class="content__section header">
-    @vv.idol.name (東京都)
-</h1>
-
-<div class="container marketing" id="kiso">
+<div class="container" id="kiso">
     <div class="row featurette">
         <div class="col-md-7 col-md-push-5">
+            <h4 class="content__section header">
+                名前
+            </h4>
+            <p class="lead" style="font-size:25px; text-align: center;">@vv.idol.name</p>
+
+            <h4 class="content__section header">
+                プロフィール
+            </h4>
             <p class="lead">@vv.idol.profile</p>
+
         </div>
         <div class="col-md-5 col-md-pull-7">
             @views.html.common.component.image.ResponsiveImage(
@@ -38,32 +43,27 @@
     <hr class="featurette-divider">
 
     <h1 class="display-2">おすすめの地方特産品</h1>
-
-
-    <div class="col-md-6-lg-6">
-        <div class="col">
-            @for(product <- vv.products) {
-            <div class="col-xs-3">
-                <a href="@controllers.product.routes.ProductController.detail(vv.idol.id.get, product.id.get)">
-                    <div class="thumbnail">
-                        @views.html.common.component.image.ResponsiveImage(
-                        path    = s"site/product/${product.id.get}.jpg",
-                        alt     = "商品画像",
-                        classes = "product-img",
-                        maxSize = 1,
-                        width = 150,
-                        height = 150
-                        )
-                        <div class="caption">
-                            <p class="text-center text-muted">@product.name</p>
-                        </div>
+    <ul class="list">
+        @for(product <- vv.products) {
+            <a href="@controllers.product.routes.ProductController.detail(vv.idol.id.get, product.id.get)" style="text-align: left;">
+                <div class="thumbnail thumbnail_with_text" >
+                    <img src = @{"/assets/images/site/product/" + product.id.get + ".jpg"} class="img_cover">
+                    <!--
+                    @views.html.common.component.image.ResponsiveImage(
+                    path    = s"site/product/${product.id.get}.jpg",
+                    alt     = "商品画像",
+                    classes = "product-img img_cover",
+                    maxSize = 1,
+                    width = 100,
+                    height = 100
+                    )
+                    -->
+                    <div class="caption">
+                        <p class="text-center text-muted">@product.name</p>
                     </div>
-                </a>
-            </div>
-            }
-        </div>
-    </div>
- 
-
+                </div>
+            </a>
+        }
+    </ul>
 </div>
 }

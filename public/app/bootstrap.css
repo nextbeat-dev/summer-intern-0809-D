@@ -42,3 +42,15 @@ margin-left: 10px;
     margin: 10px;
     padding: 0px;
 }
+
+/**/
+.thumbnail_with_text {
+    margin: 15px;
+    width: 200px;
+    height: 180px;
+}
+.img_cover{
+    width: 100px;
+    height: 100px !important;
+    object-fit: cover;
+}
