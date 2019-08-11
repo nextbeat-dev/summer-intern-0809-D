@@ -13,64 +13,45 @@
 @(vv: SiteViewIdolRanking)(implicit messages: play.api.i18n.Messages)
 
 
-@** 施設検索一覧 *@
+@** アイドルランキング *@
 @views.html.common.layout.InnerContent("site-app-new-user-form", "content") {
 @** --[ 見出し ]---------------------------------------------------------- *@
-@** ----feature/add-ranking-------------------------------------------------------- *@
-<h3 class="content__section header">
-    アイドルランキング
-</h3>
 
-@** --[ 一覧 ]-------------------------------------------------------- *@
-<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+
+<h1 class="content__section header">
+    グループ別ランキング
+</h1>
+
 
 <div class="container">
-    <!-- 検索結果 -->
-    <ul class="list">
-        @for(rankingByNumberPurchased <- vv.purchaseCountSeq) {
-            @for(data <- vv.top3IdolSeq) {
-                @if(rankingByNumberPurchased._1.equals(data.id.get)){
-                    <li>
-                        <a href="@controllers.idol.routes.IdolController.detail(data.id.get)">
-                            <div class="thumbnail">
-                                @views.html.common.component.image.ResponsiveImage(
-                                    path = s"site/idol/list/${data.id.get}.png",
-                                    alt = "アイドルイメージ",
-                                    classes = "idol-img",
-                                    maxSize = 1,
-                                    width = 150,
-                                    height = 150
-                                )
-                            <div class="caption">
-                                <p></p>
-                                <p class="text-center text-muted">@data.profile</p>
-                                <h4 class="text-center">@data.name</h4>
-                                <a href="https://twitter.com/@data.twitterId">
-                                    <i class="fab fa-twitter-square fa-2x my-skyblue icon"></i>
-                                </a>
-                            </div>
-                            </div>
-                        </a>
-                        <p>
-                            購入された数: @rankingByNumberPurchased._2
-                        </p>
-                    </li>
-               }
-            }
-        }
-    </ul>
+    <div class="row">
 
+    @for((rankingByNumberPurchased, index) <- vv.purchaseCountSeq.zipWithIndex) {
+        @for(data<- vv.top3IdolSeq) {
+            @if(rankingByNumberPurchased._1.equals(data.id.get)) {
+                <div class="col-xs-4">
+                    <div class="rank_title">
+                        <div class="rank_left">
+                        @views.html.common.component.image.ResponsiveImage(
+                            path    = s"site/idol/ranking/${index + 1}.png",
+                            alt     = s"${index + 1}位",
+                            classes = "idol-img",
+                            maxSize = 1,
+                            width = 70,
+                            height = 70
+                        )
+                        </div>
+                        <div class="rank_center">
+                            <h2>@{index + 1}位</h2>
+                        </div>
+                    </div>
 
-    <ul class="list">
-    @for(rankingByNumberPurchased <- vv.purchaseCountSeq) {
-        @for(data <- vv.notTop3IdolSeq) {
-            @if(rankingByNumberPurchased._1.equals(data.id.get)){
-                <li>
                     <a href="@controllers.idol.routes.IdolController.detail(data.id.get)">
-                        <div class="thumbnail">
+                        <div class="rank_top">
                             @views.html.common.component.image.ResponsiveImage(
-                                path = s"site/idol/list/${data.id.get}.png",
-                                alt = "アイドルイメージ",
+                                path    = s"site/idol/list/${data.id.get}.png",
+                                alt     = "アイドルイメージ",
                                 classes = "idol-img",
                                 maxSize = 1,
                                 width = 150,
@@ -78,167 +59,51 @@
                             )
                             <div class="caption">
                                 <p></p>
-                                <p class="text-center text-muted">@data.profile</p>
-                                <h4 class="text-center">@data.name</h4>
-                                <a href="https://twitter.com/@data.twitterId">
-                                    <i class="fab fa-twitter-square fa-2x my-skyblue icon"></i>
-                                </a>
+                                <h2 class="text-center">@data.name</h2>
                             </div>
                         </div>
                     </a>
-                    <p>
-                        購入された数: @rankingByNumberPurchased._2
-                    </p>
-                </li>
+                </div>
             }
         }
     }
-    </ul>
-</div>
-}
-@** ----＝＝＝＝＝＝＝-------------------------------------------------------- *@
-<h1 class="content__section header">
-    グループ別ランキング
-</h1>
 
-@** --[ 一覧 ]-------------------------------------------------------- *@
-<!-- <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet"> -->
-
-<div class="container">
-    <div class="row">
-        <div class="col-xs-4">
-            <div class="rank_title">
-                <div class="rank_left">
-                    @views.html.common.component.image.ResponsiveImage(
-                        path    = "site/idol/ranking/first.png",
-                        alt     = "1位",
-                        classes = "idol-img",
-                        maxSize = 1,
-                        width = 70,
-                        height = 70
-                    )
-                </div>
-                <div class="rank_center">
-                    <h2>1位</h2>
-                </div>
-            </div>
-
-            <a href="@controllers.idol.routes.IdolController.detail(vv.idols(0).id.get)">
-                <div class="rank_top">
-                    @views.html.common.component.image.ResponsiveImage(
-                    path    = s"site/idol/list/${vv.idols(0).id.get}.png",
-                    alt     = "アイドルイメージ",
-                    classes = "idol-img",
-                    maxSize = 1,
-                    width = 150,
-                    height = 150
-                    )
-                    <div class="caption">
-                        <p></p>
-                        <h2 class="text-center">@vv.idols(1).name</h2>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <div class="col-xs-4">
-            <div class="rank_title">
-                <div class="rank_left">
-                    @views.html.common.component.image.ResponsiveImage(
-                        path    = "site/idol/ranking/second.png",
-                        alt     = "1位",
-                        classes = "idol-img",
-                        maxSize = 1,
-                        width = 50,
-                        height = 50
-                    )
-                </div>
-                <div class="rank_center">
-                    <h2>2位</h2>
-                </div>
-            </div>
-
-            <a href="@controllers.idol.routes.IdolController.detail(vv.idols(1).id.get)">
-                <div class="rank_top">
-                    @views.html.common.component.image.ResponsiveImage(
-                    path    = s"site/idol/list/${vv.idols(1).id.get}.png",
-                    alt     = "アイドルイメージ",
-                    classes = "idol-img",
-                    maxSize = 1,
-                    width = 150,
-                    height = 150
-                    )
-                    <div class="caption">
-                        <p></p>
-                        <h2 class="text-center">@vv.idols(1).name</h2>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <div class="col-xs-4">
-            <div class="rank_title">
-                <div class="rank_left">
-                    @views.html.common.component.image.ResponsiveImage(
-                        path    = "site/idol/ranking/third.png",
-                        alt     = "3位",
-                        classes = "idol-img",
-                        maxSize = 1,
-                        width = 50,
-                        height = 50
-                    )
-                </div>
-                <div class="rank_center">
-                    <h2>3位</h2>
-                </div>
-            </div>
-
-            <a href="@controllers.idol.routes.IdolController.detail(vv.idols(2).id.get)">
-                <div class="rank_top">
-                    @views.html.common.component.image.ResponsiveImage(
-                    path    = s"site/idol/list/${vv.idols(2).id.get}.png",
-                    alt     = "アイドルイメージ",
-                    classes = "idol-img",
-                    maxSize = 1,
-                    width = 150,
-                    height = 150
-                    )
-                    <div class="caption">
-                        <p></p>
-                        <h2 class="text-center">@vv.idols(2).name</h2>
-                    </div>
-                </div>
-            </a>
-        </div>
     </div>
 
+
+
     <div class="row">
-        @for((data,i) <- vv.idols.drop(3).zipWithIndex) {
-        <div class="col-xs-3">
-            <div class="rank_title">
-                <div class="rank_center">
-                    <h3>@{4+i} 位</h3>
-                </div>
-            </div>
-            <a href="@controllers.idol.routes.IdolController.detail(data.id.get)">
-                <div class="thumbnail">
-                    @views.html.common.component.image.ResponsiveImage(
-                    path    = s"site/idol/list/${data.id.get}.png",
-                    alt     = "アイドルイメージ",
-                    classes = "idol-img",
-                    maxSize = 1,
-                    width = 150,
-                    height = 150
-                    )
-                    <div class="caption">
-                        <h4 class="text-center">@data.name</h4>
+        @for((rankingByNumberPurchased, index) <- vv.purchaseCountSeq.zipWithIndex) {
+            @for(data <- vv.notTop3IdolSeq) {
+                @if(rankingByNumberPurchased._1.equals(data.id.get)) {
+                    <div class="col-xs-3">
+                        <div class="rank_title">
+                            <div class="rank_center">
+                                <h3>@{1 + index} 位</h3>
+                            </div>
+                        </div>
+                        <a href="@controllers.idol.routes.IdolController.detail(data.id.get)">
+                            <div class="thumbnail">
+                                @views.html.common.component.image.ResponsiveImage(
+                                    path    = s"site/idol/list/${data.id.get}.png",
+                                    alt     = "アイドルイメージ",
+                                    classes = "idol-img",
+                                    maxSize = 1,
+                                    width = 150,
+                                    height = 150
+                                )
+                                <div class="caption">
+                                    <h4 class="text-center">@data.name</h4>
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                </div>
-            </a>
-        </div>
+                }
+            }
         }
+
+
     </div>
 </div>
 }
 
-@** ---develop-------------------------------------------------------- *@
