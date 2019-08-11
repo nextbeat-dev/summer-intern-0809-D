@@ -26,40 +26,75 @@
 
 <div class="container">
     <!-- 検索結果 -->
-        <ul class="list">
-            @for(rankingByNumberPurchased <- vv.purchaseCountSeq) {
-                @for(data <- vv.idols) {
-                    @if(rankingByNumberPurchased._1.equals(data.id.get)){
-                        <li>
-                            <a href="@controllers.idol.routes.IdolController.detail(data.id.get)">
-                                <div class="thumbnail">
-                                    @views.html.common.component.image.ResponsiveImage(
-                                        path = s"site/idol/list/${data.id.get}.png",
-                                        alt = "アイドルイメージ",
-                                        classes = "idol-img",
-                                        maxSize = 1,
-                                        width = 150,
-                                        height = 150
-                                    )
-                                <div class="caption">
-                                    <p></p>
-                                    <p class="text-center text-muted">@data.profile</p>
-                                    <h4 class="text-center">@data.name</h4>
-                                    <a href="https://twitter.com/@data.twitterId">
-                                        <i class="fab fa-twitter-square fa-2x my-skyblue icon"></i>
-                                    </a>
-                                </div>
-                                </div>
-                            </a>
-                            <p>
-                                購入された数: @rankingByNumberPurchased._2
-                            </p>
-                        </li>
-                   }
-                }
+    <ul class="list">
+        @for(rankingByNumberPurchased <- vv.purchaseCountSeq) {
+            @for(data <- vv.top3IdolSeq) {
+                @if(rankingByNumberPurchased._1.equals(data.id.get)){
+                    <li>
+                        <a href="@controllers.idol.routes.IdolController.detail(data.id.get)">
+                            <div class="thumbnail">
+                                @views.html.common.component.image.ResponsiveImage(
+                                    path = s"site/idol/list/${data.id.get}.png",
+                                    alt = "アイドルイメージ",
+                                    classes = "idol-img",
+                                    maxSize = 1,
+                                    width = 150,
+                                    height = 150
+                                )
+                            <div class="caption">
+                                <p></p>
+                                <p class="text-center text-muted">@data.profile</p>
+                                <h4 class="text-center">@data.name</h4>
+                                <a href="https://twitter.com/@data.twitterId">
+                                    <i class="fab fa-twitter-square fa-2x my-skyblue icon"></i>
+                                </a>
+                            </div>
+                            </div>
+                        </a>
+                        <p>
+                            購入された数: @rankingByNumberPurchased._2
+                        </p>
+                    </li>
+               }
             }
-        </ul>
-    </div>
+        }
+    </ul>
+
+
+    <ul class="list">
+    @for(rankingByNumberPurchased <- vv.purchaseCountSeq) {
+        @for(data <- vv.notTop3IdolSeq) {
+            @if(rankingByNumberPurchased._1.equals(data.id.get)){
+                <li>
+                    <a href="@controllers.idol.routes.IdolController.detail(data.id.get)">
+                        <div class="thumbnail">
+                            @views.html.common.component.image.ResponsiveImage(
+                                path = s"site/idol/list/${data.id.get}.png",
+                                alt = "アイドルイメージ",
+                                classes = "idol-img",
+                                maxSize = 1,
+                                width = 150,
+                                height = 150
+                            )
+                            <div class="caption">
+                                <p></p>
+                                <p class="text-center text-muted">@data.profile</p>
+                                <h4 class="text-center">@data.name</h4>
+                                <a href="https://twitter.com/@data.twitterId">
+                                    <i class="fab fa-twitter-square fa-2x my-skyblue icon"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </a>
+                    <p>
+                        購入された数: @rankingByNumberPurchased._2
+                    </p>
+                </li>
+            }
+        }
+    }
+    </ul>
+</div>
 }
 @** ----＝＝＝＝＝＝＝-------------------------------------------------------- *@
 <h1 class="content__section header">
