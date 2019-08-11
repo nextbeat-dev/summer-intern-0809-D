@@ -10,7 +10,7 @@
 
 @** 施設一覧/検索 *@
 @(vvIdol: SiteViewIdolDetail, vvMessage: MessageByIdol)(implicit messages: play.api.i18n.Messages)
-@views.html.common.layout.Default(vvIdol.layout) {
+@views.html.common.layout.Default(vvIdol.layout, false) {
   @views.html.common.layout.ContentLayout(
     id      = "site-purchase-complete",
     content = tplContent

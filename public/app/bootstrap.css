@@ -77,6 +77,13 @@ margin-left: 10px;
 }
 
 /* ページ下部、商品一覧のための設定 */
+.idol_product_list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    padding: 0px;
+}
+
 .thumbnail_with_text {
     margin: 15px;
     width: 200px;

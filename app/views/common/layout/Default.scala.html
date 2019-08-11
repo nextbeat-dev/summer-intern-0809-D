@@ -6,7 +6,7 @@
 *@
 
 @import controllers.routes.Assets
-@(vv: model.component.util.ViewValuePageLayout)(content: play.twirl.api.Html)(
+@(vv: model.component.util.ViewValuePageLayout, isHeaderLayout: Boolean = true)(content: play.twirl.api.Html)(
   implicit messages: play.api.i18n.Messages
 )
 <!DOCTYPE html>
@@ -27,6 +27,7 @@
     <link rel="stylesheet" type="text/css" href=@Assets.versioned("app/bootstrap.css")>
     <link rel="stylesheet" type="text/css" href=@Assets.versioned("app/idol_list.css")>
     <link rel="stylesheet" type="text/css" href=@Assets.versioned("app/product_detail.css")>
+    <link rel="stylesheet" type="text/css" href=@Assets.versioned("app/purchase.css")>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
 
@@ -40,7 +41,9 @@
   <body>
     @** コンテンツ *@
     @views.html.common.tags.SimpleScript()
-    @views.html.common.layout.NavGlobal(vv)
+    @if(isHeaderLayout){
+      @views.html.common.layout.NavGlobal(vv)
+    }
     <main id="main-content">@content</main>
     @views.html.common.layout.NavFooter(vv)
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
