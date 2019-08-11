@@ -38,6 +38,17 @@ class PurchaseHistoryDao @javax.inject.Inject()(
       slick returning slick.map(_.id) += data
     }
 
+  def getPurchaseCountList =
+    db.run{
+      slick
+          .filter(_.createdAt)
+        .groupBy(_.idol_id).map{
+        case (s, results) => (s -> results.length)
+      }.result
+    }
+
+
+
 
   // --[ テーブル定義 ] --------------------------------------------------------
   class PurchaseHistoryTable(tag: Tag) extends Table[PurchaseHistory](tag, "purchase_history") {
