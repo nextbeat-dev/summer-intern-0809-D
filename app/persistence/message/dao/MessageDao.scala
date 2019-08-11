@@ -13,7 +13,7 @@ import persistence.message.model.Message
 
 // DAO: メッセージ情報
 //~~~~~~~~~~~~~~~~~~
-case class IdolDao @javax.inject.Inject()(
+case class MessageDao @javax.inject.Inject()(
   val dbConfigProvider: DatabaseConfigProvider
 ) extends HasDatabaseConfigProvider[JdbcProfile] {
   import profile.api._
