@@ -46,7 +46,7 @@ class ProductController @javax.inject.Inject()(
         layout  = ViewValuePageLayout(id = request.uri),
         product = product
       )
-      Ok(views.html.site.product.detail.Main(vvIdol, vvProduct, idolId, productId))
+      Ok(views.html.site.product.detail.Main(vvIdol, vvProduct))
 
       // とりあえずrecruitページに飛ぶ
       // Redirect("/recruit/intership-for-summer-21")

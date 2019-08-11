@@ -1,0 +1,109 @@
+@*
+* This file is part of the Nextbeat services.
+*
+* For the full copyright and license information,
+* please view the LICENSE file that was distributed with this source code.
+*@
+@import views.html.helper
+
+@import model.site.idol.SiteViewIdolRanking
+@import play.api.data.Form
+
+@import persistence.facility.model.FacilitySearch
+@(vv: SiteViewIdolRanking)(implicit messages: play.api.i18n.Messages)
+
+
+@** アイドルランキング *@
+@views.html.common.layout.InnerContent("site-app-new-user-form", "content") {
+@** --[ 見出し ]---------------------------------------------------------- *@
+
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+
+<h1 class="content__section header">
+    グループ別ランキング
+</h1>
+
+
+<div class="container">
+    <div class="row">
+
+    @for((rankingByNumberPurchased, index) <- vv.purchaseCountSeq.zipWithIndex) {
+        @for(data<- vv.top3IdolSeq) {
+            @if(rankingByNumberPurchased._1.equals(data.id.get)) {
+                <div class="col-xs-4">
+                    <div class="rank_title">
+                        <div class="rank_left">
+                        @views.html.common.component.image.ResponsiveImage(
+                            path    = s"site/idol/ranking/${index + 1}.png",
+                            alt     = s"${index + 1}位",
+                            classes = "idol-img",
+                            maxSize = 1,
+                            width = 70,
+                            height = 70
+                        )
+                        </div>
+                        <div class="rank_center">
+                            <h2>@{index + 1}位</h2>
+                        </div>
+                    </div>
+
+                    <a href="@controllers.idol.routes.IdolController.detail(data.id.get)">
+                        <div class="rank_top">
+                            @views.html.common.component.image.ResponsiveImage(
+                                path    = s"site/idol/list/${data.id.get}.png",
+                                alt     = "アイドルイメージ",
+                                classes = "idol-img",
+                                maxSize = 1,
+                                width = 150,
+                                height = 150
+                            )
+                            <div class="caption">
+                                <p></p>
+                                <h2 class="text-center">@data.name</h2>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+        }
+    }
+
+    </div>
+
+
+
+    <div class="row">
+        @for((rankingByNumberPurchased, index) <- vv.purchaseCountSeq.zipWithIndex) {
+            @for(data <- vv.notTop3IdolSeq) {
+                @if(rankingByNumberPurchased._1.equals(data.id.get)) {
+                    <div class="col-xs-3">
+                        <div class="rank_title">
+                            <div class="rank_center">
+                                <h3>@{1 + index} 位</h3>
+                            </div>
+                        </div>
+                        <a href="@controllers.idol.routes.IdolController.detail(data.id.get)">
+                            <div class="thumbnail">
+                                @views.html.common.component.image.ResponsiveImage(
+                                    path    = s"site/idol/list/${data.id.get}.png",
+                                    alt     = "アイドルイメージ",
+                                    classes = "idol-img",
+                                    maxSize = 1,
+                                    width = 150,
+                                    height = 150
+                                )
+                                <div class="caption">
+                                    <h4 class="text-center">@data.name</h4>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+            }
+        }
+
+
+    </div>
+</div>
+}
+

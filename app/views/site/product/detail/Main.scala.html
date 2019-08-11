@@ -2,7 +2,7 @@
 @import model.site.product.SiteViewProductDetail
 @import play.api.data.Form
 
-@(vvIdol: SiteViewIdolDetail, vvProduct: SiteViewProductDetail, idolId: Long, productId: Long)(implicit messages: play.api.i18n.Messages)
+@(vvIdol: SiteViewIdolDetail, vvProduct: SiteViewProductDetail)(implicit messages: play.api.i18n.Messages)
 @views.html.common.layout.Default(vvIdol.layout) {
   @views.html.common.layout.ContentLayout(
     id      = "site-idol-detail",
@@ -12,5 +12,5 @@
 
 @** テンプレート: コンテンツ *@
 @tplContent = {
-  @views.html.site.product.detail._Detail(vvIdol, vvProduct , idolId, productId)
+  @views.html.site.product.detail._Detail(vvIdol, vvProduct)
 }

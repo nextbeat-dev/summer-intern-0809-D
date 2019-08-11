@@ -4,13 +4,16 @@ import play.api.i18n.I18nSupport
 import play.api.mvc.{AbstractController, MessagesControllerComponents}
 import persistence.idol.dao.IdolDao
 import persistence.idol_products.dao.IdolProductsDAO
+import persistence.purchase_history.dao.PurchaseHistoryDao
 import model.site.idol.SiteViewIdolList
 import model.site.idol.SiteViewIdolDetail
+import model.site.idol.SiteViewIdolRanking
 import model.component.util.ViewValuePageLayout
 
 class IdolController @javax.inject.Inject()(
   val idolDao: IdolDao,
   val idolProductDao: IdolProductsDAO,
+  val purchaseHistoryDao: PurchaseHistoryDao,
   cc: MessagesControllerComponents
 ) extends  AbstractController(cc) with I18nSupport {
   implicit lazy val executionContext = defaultExecutionContext
@@ -28,6 +31,26 @@ class IdolController @javax.inject.Inject()(
       )
       // printf(idolSeq(1).name)
       Ok(views.html.site.idol.list.Main(vv))
+    }
+  }
+
+  def ranking = Action.async { implicit request =>
+    for {
+      idolSeq <- idolDao.findAll
+      purchaseCountList <- purchaseHistoryDao.getPurchaseCountList
+    } yield {
+      val top3IdolIds    = purchaseCountList.map(_._1).take(3)
+      val top3IdolSeq    = idolSeq.filter(x => top3IdolIds.contains(x.id.get))
+      val notTop3IdolSeq = idolSeq.filter(x => !top3IdolIds.contains(x.id.get))
+
+      val vv = SiteViewIdolRanking(
+        layout = ViewValuePageLayout(id = request.uri),
+        top3IdolSeq = top3IdolSeq,
+        notTop3IdolSeq = notTop3IdolSeq,
+        purchaseCountSeq = purchaseCountList
+      )
+      // printf(idolSeq(1).name)
+      Ok(views.html.site.idol.ranking.Main(vv))
     }
   }
 

@@ -2,6 +2,10 @@
 height: 500px;
 }
 
+#myCarousel {
+    margin-bottom: 0px;
+}
+
 .item img {
 position: absolute;
 object-fit:cover;
@@ -24,6 +28,34 @@ margin-left: 10px;
     text-align:center;
  }
 
+.rank_title {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    height: 80px;
+    margin: 5px;
+}
+
+.rank_left {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.rank_center {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.rank_top {
+    border: double 5px #FF6E00;
+    border-radius: 8px;
+    text-align: center;
+    vertical-align: middle;
+}
+
 .center-container {
     text-align: center;
 }
@@ -38,12 +70,13 @@ margin-left: 10px;
 
 .list li {
     list-style: none;
-    min-width: 300px;
+    width: 300px;
+    height: 300px;
     margin: 10px;
     padding: 0px;
 }
 
-/**/
+/* ページ下部、商品一覧のための設定 */
 .thumbnail_with_text {
     margin: 15px;
     width: 200px;
@@ -53,4 +86,21 @@ margin-left: 10px;
     width: 100px;
     height: 100px !important;
     object-fit: cover;
+}
+
+/**/
+p {
+    margin: 0 !important;
+}
+
+.hidden-container{
+    overflow: hidden;
+    width: 100%;
+    overflow: hidden;
+}
+
+.hidden-container p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
 }
