@@ -39,9 +39,14 @@ class IdolController @javax.inject.Inject()(
       idolSeq <- idolDao.findAll
       purchaseCountList <- purchaseHistoryDao.getPurchaseCountList
     } yield {
+      val top3IdolIds    = purchaseCountList.map(_._1).take(3)
+      val top3IdolSeq    = idolSeq.filter(x => top3IdolIds.contains(x.id.get))
+      val notTop3IdolSeq = idolSeq.filter(x => !top3IdolIds.contains(x.id.get))
+
       val vv = SiteViewIdolRanking(
         layout = ViewValuePageLayout(id = request.uri),
-        idols = idolSeq,
+        top3IdolSeq = top3IdolSeq,
+        notTop3IdolSeq = notTop3IdolSeq,
         purchaseCountSeq = purchaseCountList
       )
       // printf(idolSeq(1).name)

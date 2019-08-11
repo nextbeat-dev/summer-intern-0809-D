@@ -7,6 +7,7 @@ import persistence.idol.model.Idol
 //~~~~~~~~~~~~~~~~~~~~~
 case class SiteViewIdolRanking(
    layout: ViewValuePageLayout,
-   idols : Seq[Idol],
+   top3IdolSeq: Seq[Idol],
+   notTop3IdolSeq: Seq[Idol],
    purchaseCountSeq : Seq[(Idol.Id, Int)]
  )
