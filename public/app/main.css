@@ -54,6 +54,9 @@ body {
 .nav-global-simple .content__section.logo .logo__image {
   height: 50px; }
 
+.nav-global-simple .content__section.logo .rank__button {
+  float: right; }
+
 #nav-footer.content {
   position: relative;
   color: white;
