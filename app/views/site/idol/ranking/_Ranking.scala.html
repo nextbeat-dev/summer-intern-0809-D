@@ -10,6 +10,7 @@
 @import play.api.data.Form
 
 @import persistence.facility.model.FacilitySearch
+@import java.time.LocalDateTime
 @(vv: SiteViewIdolRanking)(implicit messages: play.api.i18n.Messages)
 
 
@@ -20,7 +21,7 @@
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 
 <h1 class="content__section header">
-    グループ別ランキング
+    アイドル別@{LocalDateTime.now().getYear}年@{LocalDateTime.now().getMonthValue}月ランキング
 </h1>
 
 
@@ -58,11 +59,13 @@
                                 height = 150
                             )
                             <div class="caption">
-                                <p></p>
                                 <h2 class="text-center">@data.name</h2>
                             </div>
                         </div>
                     </a>
+                    <div class="center">
+                        <h3>投票ポイント：@rankingByNumberPurchased._2</h3>
+                    </div>
                 </div>
             }
         }
@@ -97,6 +100,9 @@
                                 </div>
                             </div>
                         </a>
+                        <div class="center">
+                            <h4>投票ポイント：@rankingByNumberPurchased._2</h4>
+                        </div>
                     </div>
                 }
             }
