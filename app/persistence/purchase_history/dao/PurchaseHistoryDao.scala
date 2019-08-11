@@ -41,10 +41,11 @@ class PurchaseHistoryDao @javax.inject.Inject()(
   def getPurchaseCountList =
     db.run{
       slick
-          .filter(_.createdAt)
         .groupBy(_.idol_id).map{
         case (s, results) => (s -> results.length)
-      }.result
+
+      }.sortBy(row => row._2.desc)
+       .result
     }
 
 

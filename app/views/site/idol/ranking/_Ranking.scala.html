@@ -1,0 +1,61 @@
+@*
+* This file is part of the Nextbeat services.
+*
+* For the full copyright and license information,
+* please view the LICENSE file that was distributed with this source code.
+*@
+@import views.html.helper
+@import model.site.idol.SiteViewIdolRanking
+@import play.api.data.Form
+
+@import persistence.facility.model.FacilitySearch
+@(vv: SiteViewIdolRanking)(implicit messages: play.api.i18n.Messages)
+
+
+@** 施設検索一覧 *@
+@views.html.common.layout.InnerContent("site-app-new-user-form", "content") {
+@** --[ 見出し ]---------------------------------------------------------- *@
+<h3 class="content__section header">
+    アイドルランキング
+</h3>
+
+@** --[ 一覧 ]-------------------------------------------------------- *@
+<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+
+<div class="container">
+    <!-- 検索結果 -->
+        <ul class="list">
+            @for(rankingByNumberPurchased <- vv.purchaseCountSeq) {
+                @for(data <- vv.idols) {
+                    @if(rankingByNumberPurchased._1.equals(data.id.get)){
+                        <li>
+                            <a href="@controllers.idol.routes.IdolController.detail(data.id.get)">
+                                <div class="thumbnail">
+                                    @views.html.common.component.image.ResponsiveImage(
+                                        path = s"site/idol/list/${data.id.get}.png",
+                                        alt = "アイドルイメージ",
+                                        classes = "idol-img",
+                                        maxSize = 1,
+                                        width = 150,
+                                        height = 150
+                                    )
+                                <div class="caption">
+                                    <p></p>
+                                    <p class="text-center text-muted">@data.profile</p>
+                                    <h4 class="text-center">@data.name</h4>
+                                    <a href="https://twitter.com/@data.twitterId">
+                                        <i class="fab fa-twitter-square fa-2x my-skyblue icon"></i>
+                                    </a>
+                                </div>
+                                </div>
+                            </a>
+                            <p>
+                                購入された数: @rankingByNumberPurchased._2
+                            </p>
+                        </li>
+                   }
+                }
+            }
+        </ul>
+    </div>
+}
