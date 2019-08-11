@@ -7,11 +7,12 @@ import java.time.LocalDateTime
 // アイドル情報
 //~~~~~~~~~~~~~~
 case class Idol(
-  id:        Option[Idol.Id],                    // アイドルのID
+  id       : Option[Idol.Id],                    // アイドルのID
   // groupId:   Option[Group.Id],                  // アイドルのグループID
-  name:      String,                             // アイドル名
-  profile:   String,                             // アイドル情報
+  name     : String,                             // アイドル名
+  profile  : String,                             // アイドル情報
   twitterId: String,                             // アイドル個人のTwitterのID
+  location : String,                             // アイドルの出身地
   updatedAt: LocalDateTime = LocalDateTime.now,  // データ更新日
   createdAt: LocalDateTime = LocalDateTime.now   // データ作成日
 )
@@ -26,13 +27,14 @@ object Idol{
   // --[ フォーム定義 ]---------------------------------------------------------
   val formForNewUser = Form(
     mapping(
-      "name"                -> nonEmptyText,
-      "profile"             -> nonEmptyText,
+      "name"       -> nonEmptyText,
+      "profile"    -> nonEmptyText,
       "twitterId"  -> nonEmptyText,
+      "location"   -> nonEmptyText,
     )(Function.untupled(
-      t => Idol(None, t._1, t._2, t._3)
+      t => Idol(None, t._1, t._2, t._3, t._4)
     ))(Idol.unapply(_).map(
-      t => (t._2, t._3, t._4)
+      t => (t._2, t._3, t._4, t._5)
     ))
   )
 }

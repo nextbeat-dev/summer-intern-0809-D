@@ -14,52 +14,39 @@
 @** 施設検索一覧 *@
 @views.html.common.layout.InnerContent("site-app-new-user-form", "content") {
 @** --[ 見出し ]---------------------------------------------------------- *@
-<h5 class="content__section header">
+<h3 class="content__section header">
     アイドル一覧
-</h5>
+</h3>
 
 @** --[ 一覧 ]-------------------------------------------------------- *@
+<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 
 <div class="container">
     <!-- 検索結果 -->
-    <div class="col-md-6-lg-6">
-        <div class="col">
+        <ul class="list">
             @for(data <- vv.idols) {
-            <div class="col-xs-3">
-                <div class="panel panel-warning">
-                    <div class="panel-heading">
-                        <img src="assets/images/site/idol.list/01.jpg" class="img-rounded img-responsive">
+                <li><a href="@controllers.idol.routes.IdolController.detail(data.id.get)">
+                    <div class="thumbnail">
+                        @views.html.common.component.image.ResponsiveImage(
+                        path    = s"site/idol/list/${data.id.get}.png",
+                        alt     = "アイドルイメージ",
+                        classes = "idol-img",
+                        maxSize = 1,
+                        width = 150,
+                        height = 150
+                        )
+                        <div class="caption">
+                            <p></p>
+                            <p class="text-center text-muted">@data.profile</p>
+                            <h4 class="text-center">@data.name</h4>
+                            <a href="https://twitter.com/@data.twitterId">
+                                <i class="fab fa-twitter-square fa-2x my-skyblue icon"></i>
+                            </a>
+                        </div>
                     </div>
-                    <div class="panel-body">
-                        <p class="text-center text-muted">@data.id</p>
-                    </div>
-                    <div class="panel-footer">
-                        <p class="text-center">@data.name</p>
-                    </div>
-                </div>
-            </div>
+                </a></li>
             }
-        </div>
-    </div>
-    <!-- 注目のアイドル -->
-    <div class="col-md-6-lg-6">
-        <div class="col">
-            @for(data <- vv.idols) {
-            <div class="col-xs-3">
-                <div class="panel panel-warning">
-                    <div class="panel-heading">
-                        <img src="assets/images/site/idol.list/01.jpg" class="img-rounded img-responsive">
-                    </div>
-                    <div class="panel-body">
-                        <p class="text-center text-muted">@data.id</p>
-                    </div>
-                    <div class="panel-footer">
-                        <p class="text-center">@data.name</p>
-                    </div>
-                </div>
-            </div>
-            }
-        </div>
-    </div>
+        </ul>
 </div>
 }
+

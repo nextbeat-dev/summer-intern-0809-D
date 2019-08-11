@@ -1,0 +1,23 @@
+@*
+ * This file is part of the Nextbeat services.
+ *
+ * For the full copyright and license information,
+ * please view the LICENSE file that was distributed with this source code.
+ *@
+@import model.site.idol.SiteViewIdolDetail
+@import model.site.message.MessageByIdol
+@import play.api.data.Form
+
+@** 施設一覧/検索 *@
+@(vvIdol: SiteViewIdolDetail, vvMessage: MessageByIdol)(implicit messages: play.api.i18n.Messages)
+@views.html.common.layout.Default(vvIdol.layout) {
+  @views.html.common.layout.ContentLayout(
+    id      = "site-purchase-complete",
+    content = tplContent
+  )
+}
+
+@** テンプレート: コンテンツ *@
+@tplContent = {
+  @views.html.site.purchase.complete._Complete(vvIdol, vvMessage)
+}

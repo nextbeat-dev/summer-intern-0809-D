@@ -5,6 +5,8 @@ CREATE TABLE "purchase_history" (
   "user_id"         INT     NOT NULL,
   "product_id"      INT     NOT NULL,
   "purchase_num"    INT     NOT NULL,
-
+  "idol_id"         INT     NOT NULL,
+  "updated_at"  timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  "created_at"  timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 

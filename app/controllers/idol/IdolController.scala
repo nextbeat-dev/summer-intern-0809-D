@@ -2,14 +2,17 @@ package controllers.idol
 
 import play.api.i18n.I18nSupport
 import play.api.mvc.{AbstractController, MessagesControllerComponents}
+import model.component.util.ViewValuePageLayout
+
 import persistence.idol.dao.IdolDao
 import persistence.idol.model.Idol
+import persistence.idol_products.dao.IdolProductsDAO
 import model.site.idol.SiteViewIdolList
 import model.site.idol.SiteViewIdolDetail
-import model.component.util.ViewValuePageLayout
 
 class IdolController @javax.inject.Inject()(
   val idolDao: IdolDao,
+  val idolProductDao: IdolProductsDAO,
   cc: MessagesControllerComponents
 ) extends  AbstractController(cc) with I18nSupport {
   implicit lazy val executionContext = defaultExecutionContext
@@ -30,13 +33,18 @@ class IdolController @javax.inject.Inject()(
     }
   }
 
-  def detail(id: Long) = Action.async { implicit request =>
+  /**
+    * アイドル詳細ページ
+    */
+  def detail(id: Idol.Id) = Action.async { implicit request =>
     for{
       idolA <- idolDao.get(id)
+      prdoucts <- idolProductDao.getProductsByIdolid(id)
     } yield {
       val vv = SiteViewIdolDetail(
         layout = ViewValuePageLayout(id = request.uri),
-        idol   = idolA.get
+        idol   = idolA.get,
+        products = prdoucts
       )
       // printf(idolSeq(1).name)
       Ok(views.html.site.idol.detail.Main(vv))
