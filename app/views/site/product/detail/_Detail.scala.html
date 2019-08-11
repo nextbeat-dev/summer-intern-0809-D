@@ -1,25 +1,17 @@
 @import views.html.helper
 @import model.site.idol.SiteViewIdolDetail
 @import model.site.product.SiteViewProductDetail
+@import model.site.message.MessageByIdol
 @import play.api.data.Form
 
-@(vvIdol: SiteViewIdolDetail, vvProduct: SiteViewProductDetail)(implicit messages: play.api.i18n.Messages)
+@(vvIdol: SiteViewIdolDetail, vvProduct: SiteViewProductDetail, vvRecommened: MessageByIdol)(implicit messages: play.api.i18n.Messages)
 
 @** 商品詳細 *@
 @views.html.common.layout.InnerContent("site-app-new-user-form", "content") {
-<!--
-  @vvIdol.idol.id <b></b>
-  @vvIdol.idol.name <b></b>
-  @vvIdol.idol.profile <b></b>
-  @vvIdol.idol.twitterId <b></b>
-  <b></b><b></b><b></b>
 
-  @vvProduct.product.get.id <b></b>
-  @vvProduct.product.get.name <b></b>
-  @vvProduct.product.get.price <b></b>
-  @vvProduct.product.get.stock <b></b>
-  @vvProduct.product.get.detail <b></b>
--->
+  @vvRecommened.message.id <br>
+  @vvRecommened.message.idolId <br>
+  @vvRecommened.message.message <br>
 
 @** --[ 見出し ]---------------------------------------------------------- *@
 <h3 class="content__section header">

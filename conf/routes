@@ -15,6 +15,9 @@ GET   /idol/:id                         controllers.idol.IdolController.detail(i
 GET   /product/:i_id/:p_id              controllers.product.ProductController.detail(i_id: Long, p_id: Long)
 POST  /product/:i_id/:p_id              controllers.product.ProductController.purchase(i_id: Long, p_id: Long)
 
+# --[ 購入完了ページ ]----------------------------------------------------------------
+# POST  /complete/:i_id/:p_id             controllers.message.MessageController.complete(i_id: Long, p_id: Long)
+
 # --[ 施設ページ ]----------------------------------------------------------------
 GET  /facility/list                    controllers.facility.FacilityController.list
 GET  /facility/search                  controllers.facility.FacilityController.search
