@@ -3,10 +3,11 @@
 @import model.site.product.SiteViewProductDetail
 @import play.api.data.Form
 
-@(vvIdol: SiteViewIdolDetail, vvProduct: SiteViewProductDetail, idolId: Long, productId: Long)(implicit messages: play.api.i18n.Messages)
+@(vvIdol: SiteViewIdolDetail, vvProduct: SiteViewProductDetail)(implicit messages: play.api.i18n.Messages)
 
 @** 商品詳細 *@
 @views.html.common.layout.InnerContent("site-app-new-user-form", "content") {
+<!--
   @vvIdol.idol.id <b></b>
   @vvIdol.idol.name <b></b>
   @vvIdol.idol.profile <b></b>
@@ -18,6 +19,7 @@
   @vvProduct.product.get.price <b></b>
   @vvProduct.product.get.stock <b></b>
   @vvProduct.product.get.detail <b></b>
+-->
 
 @** --[ 見出し ]---------------------------------------------------------- *@
 <h3 class="content__section header">
@@ -32,7 +34,7 @@
   <div class="col-md-5">
     <div class="thumbnail">
       @views.html.common.component.image.ResponsiveImage(
-      path    = "site/product/1.jpg",
+      path    = s"site/product/${vvProduct.product.get.id.get}.jpg",
       alt     = "アイテムイメージ",
       classes = "item-img",
       maxSize = 1,
@@ -42,28 +44,43 @@
     </div>
   </div>
   <div class="col-md-7">
-    <h3 class="text-center box_border">カンガルー サーロイン ブロック 450g</h3>
-    <h4 class="text-center">2,990 円</h4>
+    <h3 class="text-center box_border">@vvProduct.product.get.name</h3>
+    <h4 class="text-center">@vvProduct.product.get.price 円</h4>
     <h5 class="text-center text-muted">
       <i class="fas fa-shopping-cart fa-1g">
-        在庫 3
+        在庫 @vvProduct.product.get.stock
       </i>
     </h5>
     <p class="text">
-      オーストラリアではカンガルーは「ルー」と呼ばれていて、スーパーなどでも手軽に買えます。そんなルーミートが現在世界からの注目を集めているってこと知っていました？理由は脂肪分が極めて少なく、高タンパク、そして低コレストロール。聞くところによるとオーストラリア国立心臓病学会で食生活改善のための推奨食材に認定されているらしい。
-      <br>
-      ヘルシー、テイスティー、環境にやさしい、などの理由からカンガルー肉がヒットチャート上昇中！
-      <br>
-      その上、野生なのでホルモン剤、抗生物質、その他化学薬品などは一切使用されていないのは言うまでもなく．．．基本的には有機食肉なのですが、ご存知の通り、有機（オーガニック）と呼ぶためには、捕獲してオーガニック認定牧場内で飼育しなければいけないので、反対に野生ではなくなってしまうんです。
-      <br>
-      カンガルーをオーストラリア未開拓奥地（the great Australian outback）の管理人と呼ぶ人もいますが、その理由はクッションの効いた大きな足は牛や羊、ラグビープレイヤー！？などのように、固有の植物を踏みつけて歩かないからだそうです。
+        @vvProduct.product.get.detail
     </p>
-    @helper.form(action = controllers.product.routes.ProductController.purchase(idolId, productId)){
+    @helper.form(action = controllers.product.routes.ProductController.purchase(vvIdol.idol.id.get, vvProduct.product.get.id.get)){
     <p class="text-center">
       <input type="submit" value="Buy">
     </p>
     }
   </div>
 </div>
+<!--吹き出しはじまり-->
+<div class="container">
+<div class="balloon5">
+  <div class="faceicon">
+    @views.html.common.component.image.ResponsiveImage(
+    path    = s"site/idol/list/${vvIdol.idol.id.get}.png",
+    alt     = "アイドルの商品紹介イメージ",
+    classes = "item-img",
+    maxSize = 1,
+    width = 150,
+    height = 150
+    )
+  </div>
+  <div class="chatting">
+    <div class="says">
+      <p>@vvIdol.idol.profile</p>
+    </div>
+  </div>
+</div>
+</div>
+<!--吹き出し終わり-->
 }
 
