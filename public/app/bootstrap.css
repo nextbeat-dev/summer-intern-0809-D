@@ -70,7 +70,24 @@ margin-left: 10px;
 
 .list li {
     list-style: none;
-    min-width: 300px;
+    width: 300px;
+    height: 300px;
     margin: 10px;
     padding: 0px;
+}
+
+p {
+    margin: 0 !important;
+}
+
+.hidden-container{
+    overflow: hidden;
+    width: 100%;
+    overflow: hidden;
+}
+
+.hidden-container p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
 }
