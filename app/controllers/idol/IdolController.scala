@@ -31,6 +31,9 @@ class IdolController @javax.inject.Inject()(
     }
   }
 
+  /**
+    * アイドル詳細ページ
+    */
   def detail(id: Long) = Action.async { implicit request =>
     for{
       idolA <- idolDao.get(id)
