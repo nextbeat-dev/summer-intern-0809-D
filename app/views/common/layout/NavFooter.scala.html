@@ -12,13 +12,6 @@
  *@
 <footer id="nav-footer" class="content">
   <div class="content__breadcrumb">
-    @** パンくず *@
-    <div class="content__section breadcrumb">
-      @for(breadcrumb <- vv.breadcrumb) {
-        @views.html.common.layout.PageBreadcrumb(breadcrumb)
-      }
-    </div>
-
     @** ページ先頭へ *@
     <div class="content__section navigate-to-top">
       @views.html.common.component.button.StrokedButton(
