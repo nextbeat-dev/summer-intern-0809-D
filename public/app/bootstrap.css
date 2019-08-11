@@ -2,6 +2,10 @@
 height: 500px;
 }
 
+#myCarousel {
+    margin-bottom: 0px;
+}
+
 .item img {
 position: absolute;
 object-fit:cover;
@@ -23,6 +27,33 @@ margin-left: 10px;
 .button_wrapper{
     text-align:center;
  }
+
+.rank_title {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    height: 80px;
+    margin: 5px;
+}
+
+.rank_left {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.rank_center {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.rank_top {
+    border: double 5px #FF6E00;
+    border-radius: 8px;
+    text-align: center;
+    vertical-align: middle;
 
 .center-container {
     text-align: center;
