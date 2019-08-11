@@ -43,7 +43,9 @@ class PurchaseHistoryDao @javax.inject.Inject()(
       slick
         .groupBy(_.idol_id).map{
         case (s, results) => (s -> results.length)
-      }.result
+
+      }.sortBy(row => row._2.desc)
+       .result
     }
 
 
