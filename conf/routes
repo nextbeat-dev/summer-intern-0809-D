@@ -8,6 +8,7 @@ POST  /app/new-user                     controllers.app.NewUserCommitController.
 
 # --[ アイドルページ ]----------------------------------------------------------------
 GET   /idol                             controllers.idol.IdolController.list
+GET   /idol/ranking                     controllers.idol.IdolController.ranking
 GET   /idol/:id                         controllers.idol.IdolController.detail(id: Long)
 
 # --[ 商品ページ ]----------------------------------------------------------------
