@@ -28,7 +28,7 @@ class MessageController @javax.inject.Inject()(
       idolA    <- idolDao.get(i_id)
       prdoucts <- idolProductDao.getProductsByIdolid(p_id)
 
-      message  <- messageDao.get(i_id)
+      message  <- messageDao.getComplete(i_id)
     } yield {
       val vvIdol = SiteViewIdolDetail(
         layout   = ViewValuePageLayout(id = request.uri),

@@ -20,11 +20,11 @@ import persistence.message.dao.MessageDao
 
 // 商品
 class ProductController @javax.inject.Inject()(
-  val idolDao   : IdolDao,
-  val idolProductDao: IdolProductsDAO,
-  val productDao: ProductDAO,
-  val messageDao     : MessageDao,
-  val purchaseHistoryDao: PurchaseHistoryDao,
+  val idolDao            : IdolDao,
+  val idolProductDao     : IdolProductsDAO,
+  val productDao         : ProductDAO,
+  val messageDao         : MessageDao,
+  val purchaseHistoryDao : PurchaseHistoryDao,
   cc: MessagesControllerComponents
 ) extends  AbstractController(cc) with I18nSupport {
   implicit lazy val executionContext = defaultExecutionContext
@@ -38,6 +38,7 @@ class ProductController @javax.inject.Inject()(
       prdoucts <- idolProductDao.getProductsByIdolid(idolId)
 
       product  <- productDao.get(productId)
+      rmessage <- messageDao.getRecommened(idolId)
     } yield {
       val vvIdol = SiteViewIdolDetail(
         layout  = ViewValuePageLayout(id = request.uri),
@@ -49,10 +50,13 @@ class ProductController @javax.inject.Inject()(
         layout  = ViewValuePageLayout(id = request.uri),
         product = product
       )
-      Ok(views.html.site.product.detail.Main(vvIdol, vvProduct))
 
-      // とりあえずrecruitページに飛ぶ
-      // Redirect("/recruit/intership-for-summer-21")
+      val vvRecMessage = MessageByIdol(
+        layout = ViewValuePageLayout(id = request.uri),
+        message = rmessage.get
+      )
+
+      Ok(views.html.site.product.detail.Main(vvIdol, vvProduct, vvRecMessage))
     }
   }
 
@@ -73,7 +77,7 @@ class ProductController @javax.inject.Inject()(
       idolA    <- idolDao.get(idolId)
       prdoucts <- idolProductDao.getProductsByIdolid(productId)
 
-      message  <- messageDao.get(idolId)
+      message  <- messageDao.getComplete(idolId)
     } yield {
       val vvIdol = SiteViewIdolDetail(
         layout   = ViewValuePageLayout(id = request.uri),
