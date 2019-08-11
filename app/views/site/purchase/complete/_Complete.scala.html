@@ -8,6 +8,7 @@
 
 @** 商品詳細 *@
 @views.html.common.layout.InnerContent("site-app-new-user-form", "content") {
+  <!--
   @vvIdol.idol.id <b></b>
   @vvIdol.idol.name <b></b>
   @vvIdol.idol.profile <b></b>
@@ -17,6 +18,43 @@
   @vvMessage.message.id <b></b>
   @vvMessage.message.idolId <b></b>
   @vvMessage.message.message <b></b>
+  -->
 
-  complete!
+<h3 class="text-center">
+  お買い上げありがとうございました
+</h3>
+
+<div class="container">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="balloon5">
+      <div class="faceicon">
+        @views.html.common.component.image.ResponsiveImage(
+        path    = s"site/idol/list/${vvIdol.idol.id.get}.png",
+        alt     = "アイドルイメージ",
+        classes = "item-img",
+        maxSize = 1,
+        width = 150,
+        height = 150
+        )
+      </div>
+      <div class="chatting">
+        <div class="says">
+          <h2 class="lead">
+            @vvMessage.message.message
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+<p class="text-center">
+  <a href="/">
+    <input type="submit" value="トップページへ戻る">
+  </a>
+</p>
 }
