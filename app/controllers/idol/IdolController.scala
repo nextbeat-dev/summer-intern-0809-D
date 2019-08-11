@@ -2,7 +2,10 @@ package controllers.idol
 
 import play.api.i18n.I18nSupport
 import play.api.mvc.{AbstractController, MessagesControllerComponents}
+import model.component.util.ViewValuePageLayout
+
 import persistence.idol.dao.IdolDao
+import persistence.idol.model.Idol
 import persistence.idol_products.dao.IdolProductsDAO
 import persistence.purchase_history.dao.PurchaseHistoryDao
 import model.site.idol.SiteViewIdolList
@@ -54,7 +57,10 @@ class IdolController @javax.inject.Inject()(
     }
   }
 
-  def detail(id: Long) = Action.async { implicit request =>
+  /**
+    * アイドル詳細ページ
+    */
+  def detail(id: Idol.Id) = Action.async { implicit request =>
     for{
       idolA <- idolDao.get(id)
       prdoucts <- idolProductDao.getProductsByIdolid(id)

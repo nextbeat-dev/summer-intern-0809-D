@@ -14,6 +14,8 @@ import model.component.util.ViewValuePageLayout
 import persistence.idol.model.Idol
 import persistence.product.model.Product
 
+import model.site.message.MessageByIdol
+import persistence.message.dao.MessageDao
 
 
 // 商品
@@ -21,6 +23,7 @@ class ProductController @javax.inject.Inject()(
   val idolDao   : IdolDao,
   val idolProductDao: IdolProductsDAO,
   val productDao: ProductDAO,
+  val messageDao     : MessageDao,
   val purchaseHistoryDao: PurchaseHistoryDao,
   cc: MessagesControllerComponents
 ) extends  AbstractController(cc) with I18nSupport {
@@ -54,7 +57,7 @@ class ProductController @javax.inject.Inject()(
   }
 
 //  def purchase(idolId: Idol.Id, productId: Product.Id) = (Action andThen AuthenticationAction()) { implicit userRequest =>
-  def purchase(idolId: Idol.Id, productId: Product.Id) = Action { implicit userRequest =>
+  def purchase(idolId: Idol.Id, productId: Product.Id) = Action.async { implicit request =>
     val insertData:PurchaseHistory = PurchaseHistory(
           None,
           1,
@@ -63,7 +66,27 @@ class ProductController @javax.inject.Inject()(
           idolId,
         )
     print(insertData)
-    purchaseHistoryDao.add(insertData)
-    Redirect("/recruit/intership-for-summer-21")
+
+    for{
+      _ <- purchaseHistoryDao.add(insertData)
+
+      idolA    <- idolDao.get(idolId)
+      prdoucts <- idolProductDao.getProductsByIdolid(productId)
+
+      message  <- messageDao.get(idolId)
+    } yield {
+      val vvIdol = SiteViewIdolDetail(
+        layout   = ViewValuePageLayout(id = request.uri),
+        idol     = idolA.get,
+        products = prdoucts
+      )
+
+      val vvMessage = MessageByIdol(
+        layout  = ViewValuePageLayout(id = request.uri),
+        message = message.get
+      )
+      
+      Ok(views.html.site.purchase.complete.Main(vvIdol, vvMessage))
+    }
   }
 }
