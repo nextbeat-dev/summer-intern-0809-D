@@ -6,14 +6,14 @@ CREATE TABLE "message_bought"(
   "created_at"  timestamp       NOT     NULL DEFAULT CURRENT_TIMESTAMP
 )ENGINE=InnoDB;
 
-INSERT INTO "message_bought" ("idol_id", "message") VALUES ('1', 'ありがとうございます！');;
-INSERT INTO "message_bought" ("idol_id", "message") VALUES ('2', 'ありがとう');
-INSERT INTO "message_bought" ("idol_id", "message") VALUES ('3', 'ありがとね〜');
-INSERT INTO "message_bought" ("idol_id", "message") VALUES ('4', 'またお願いね！');
-INSERT INTO "message_bought" ("idol_id", "message") VALUES ('5', 'また買ってくれてもいいんだぞ');
-INSERT INTO "message_bought" ("idol_id", "message") VALUES ('6', 'ありがとうございます！');
-INSERT INTO "message_bought" ("idol_id", "message") VALUES ('7', 'ありがとうございます！');
-INSERT INTO "message_bought" ("idol_id", "message") VALUES ('8', 'ありがとうございます！');
-INSERT INTO "message_bought" ("idol_id", "message") VALUES ('9', 'ありがとうございます！');
-INSERT INTO "message_bought" ("idol_id", "message") VALUES ('10', 'ありがとうございます！');
+INSERT INTO "message_bought" ("idol_id", "message") VALUES ('1', 'また来てね〜');;
+INSERT INTO "message_bought" ("idol_id", "message") VALUES ('2', '買ってくれてありがとう！');
+INSERT INTO "message_bought" ("idol_id", "message") VALUES ('3', 'ありがと');
+INSERT INTO "message_bought" ("idol_id", "message") VALUES ('4', 'わーい、嬉しいな！');
+INSERT INTO "message_bought" ("idol_id", "message") VALUES ('5', 'ありがとうございます。');
+INSERT INTO "message_bought" ("idol_id", "message") VALUES ('6', '今日は宴会ですね♩');
+INSERT INTO "message_bought" ("idol_id", "message") VALUES ('7', 'お、いいねいいね！');
+INSERT INTO "message_bought" ("idol_id", "message") VALUES ('8', 'ありがてーのです！');
+INSERT INTO "message_bought" ("idol_id", "message") VALUES ('9', '今日もだんだんねー');
+INSERT INTO "message_bought" ("idol_id", "message") VALUES ('10', 'また来てくださいねー');
 

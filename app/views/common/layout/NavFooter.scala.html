@@ -12,20 +12,13 @@
  *@
 <footer id="nav-footer" class="content">
   <div class="content__breadcrumb">
-    @** パンくず *@
-    <div class="content__section breadcrumb">
-      @for(breadcrumb <- vv.breadcrumb) {
-        @views.html.common.layout.PageBreadcrumb(breadcrumb)
-      }
-    </div>
-
     @** ページ先頭へ *@
     <div class="content__section navigate-to-top">
       @views.html.common.component.button.StrokedButton(
         classes    = "navigate-to-top__button",
         title      = "PAGE TOP",
         fontIcon   = "icon-arrow-up",
-        navigateTo = "#main-content"
+        navigateTo = "#nav-global"
       )
     </div>
   </div>
@@ -38,38 +31,22 @@
         classes = "logo__image",
         maxSize = 1
       )
-      <span class="logo__text">RECRUITMENT</span>
-    </div>
-
-    @** メニュー: プライマリー *@
-    <div class="content__section data-list menu-1st">
-      <ol class="data-list__inner">
-        <li class="data-list__item">
-          <a class="menu-1st__link" target="_blank" href="/recruit/interview">インタビュー</a>
-        </li>
-        <li class="data-list__item">
-          <a class="menu-1st__link" target="_blank" href="/recruit/work-style">ワークスタイル</a>
-        </li>
-        <li class="data-list__item">
-          <a class="menu-1st__link" target="_blank" href="https://recruit.jobcan.jp/nextbeat/list">募集要項</a>
-        </li>
-      </ol>
     </div>
 
     @** メニュー: セカンダリー *@
     <div class="content__section data-list menu-2nd">
       <ol class="data-list__inner">
         <li class="data-list__item">
-          <a class="menu-2nd__link" target="_blank" href="/about/overview">企業情報</a>
+          <a class="menu-2nd__link" target="_blank" href="https://www.nextbeat.co.jp/about/overview">企業情報</a>
         </li>
         <li class="data-list__item">
-          <a class="menu-2nd__link" target="_blank" href="/services">サービス</a>
+          <a class="menu-2nd__link" target="_blank" href="https://www.nextbeat.co.jp/services">サービス</a>
         </li>
         <li class="data-list__item">
-          <a class="menu-2nd__link" target="_blank" href="/news">ニュース</a>
+          <a class="menu-2nd__link" target="_blank" href="https://www.nextbeat.co.jp/news">ニュース</a>
         </li>
         <li class="data-list__item">
-          <a class="menu-2nd__link" target="_blank" href="/contact">お問い合わせ</a>
+          <a class="menu-2nd__link" target="_blank" href="https://www.nextbeat.co.jp/contact">お問い合わせ</a>
         </li>
       </ol>
     </div>
@@ -122,7 +99,7 @@
 
     @** 規約 *@
     <div class="content__section guideline">
-      <a class="guideline__link" target="_blank" href="/privacy_jp">プライバシーポリシー</a>
+      <a class="guideline__link" target="_blank" href="https://www.nextbeat.co.jp/privacy_jp">プライバシーポリシー</a>
     </div>
 
     @** コピーライト *@
