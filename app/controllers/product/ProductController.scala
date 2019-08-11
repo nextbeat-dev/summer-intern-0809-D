@@ -57,7 +57,7 @@ class ProductController @javax.inject.Inject()(
   }
 
 //  def purchase(idolId: Idol.Id, productId: Product.Id) = (Action andThen AuthenticationAction()) { implicit userRequest =>
-  def purchase(idolId: Idol.Id, productId: Product.Id) = Action { implicit request =>
+  def purchase(idolId: Idol.Id, productId: Product.Id) = Action.async { implicit request =>
     val insertData:PurchaseHistory = PurchaseHistory(
           None,
           1,
